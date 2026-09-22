@@ -1,0 +1,2526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Previous Workshops | NYU Stern Learning Science Lab</title>
+  <meta name="description" content="Search, filter, and sort previous NYU Stern Learning Science Lab workshops.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --nyu-violet: #57068c;
+      --stern-violet: #4a0072;
+      --kingfisher: #007fa3;
+      --ink: #1f1f1f;
+      --emperor: #545454;
+      --line: #d8d8d8;
+      --soft: #f6f6f6;
+      --silver: #cccccc;
+      --gold: #745300;
+      --white: #ffffff;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--white);
+      color: var(--ink);
+      font-family: "Montserrat", Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--kingfisher);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--stern-violet);
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 0;
+      left: 20px;
+      z-index: 100;
+      transform: translateY(-120%);
+      background: #fff;
+      color: var(--nyu-violet);
+      padding: 10px 14px;
+      font-weight: 800;
+    }
+
+    .skip-link:focus {
+      transform: translateY(12px);
+    }
+
+    .wrap {
+      width: min(100%, 1280px);
+      padding-inline: 20px;
+    }
+
+    .stern-masthead {
+      min-height: 97px;
+      background: var(--nyu-violet);
+      color: #fff;
+    }
+
+    .masthead-inner,
+    .titlebar-inner {
+      width: 100%;
+      padding-inline: 30px;
+    }
+
+    .masthead-inner {
+      min-height: 97px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: min(100%, 304px);
+      aspect-ratio: 1150 / 324;
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgb(255 255 255 / 0.55);
+      background: transparent;
+    }
+
+    .brand.has-logo {
+      justify-content: flex-start;
+      border: 0;
+      background-color: transparent;
+      background-image: url("stern-logo.png");
+      background-repeat: no-repeat;
+      background-position: -23px center;
+      background-size: 304px auto;
+    }
+
+    .brand-placeholder {
+      padding: 12px 14px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .brand.has-logo .brand-placeholder {
+      visibility: hidden;
+    }
+
+    .section-titlebar {
+      background: #141414;
+      color: #fff;
+    }
+
+    .titlebar-inner {
+      min-height: 141px;
+      display: flex;
+      align-items: center;
+    }
+
+    .site-title {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(38px, 3.7vw, 48px);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .site-title strong {
+      font-weight: 800;
+    }
+
+    main .wrap {
+      margin: 0 auto;
+    }
+
+    .page-head {
+      padding-block: 54px 30px;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Montserrat", Arial, Helvetica, sans-serif;
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: 0;
+      color: #111;
+    }
+
+    .dek {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: var(--emperor);
+      font-size: 18px;
+    }
+
+    .return-link {
+      display: inline-flex;
+      margin-top: 18px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tools-band {
+      background: #f2f2f2;
+      border-block: 1px solid var(--line);
+      padding-block: 22px;
+    }
+
+    .tools {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+      padding-inline: 20px;
+      display: grid;
+      grid-template-columns: minmax(240px, 1.5fr) minmax(260px, 1fr) minmax(150px, auto) auto;
+      gap: 14px;
+      align-items: end;
+    }
+
+    label,
+    .topic-filter legend,
+    .view-mode legend {
+      display: grid;
+      gap: 7px;
+      color: #333;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    input[type="search"],
+    select,
+    .topic-toggle {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid #9b9b9b;
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 12px;
+      border-radius: 0;
+      font: inherit;
+      font-size: 15px;
+    }
+
+    .topic-filter {
+      position: relative;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .topic-filter legend {
+      margin-bottom: 7px;
+      padding: 0;
+    }
+
+    .topic-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .topic-toggle::after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: translateY(-3px) rotate(45deg);
+      flex: 0 0 auto;
+    }
+
+    .topic-filter.is-open .topic-toggle::after {
+      transform: translateY(2px) rotate(225deg);
+    }
+
+    .topic-menu {
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      max-height: 320px;
+      overflow-y: auto;
+      border: 1px solid #9b9b9b;
+      background: #fff;
+      box-shadow: 0 12px 30px rgb(0 0 0 / 0.16);
+      padding: 6px 0;
+    }
+
+    .topic-menu[hidden] {
+      display: none;
+    }
+
+    .topic-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: none;
+      cursor: pointer;
+    }
+
+    .topic-option:hover {
+      background: #f6f6f6;
+    }
+
+    .topic-option input {
+      width: 16px;
+      height: 16px;
+      margin: 2px 0 0;
+      accent-color: var(--nyu-violet);
+      flex: 0 0 auto;
+    }
+
+    .view-mode {
+      min-width: 150px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .view-mode legend {
+      margin-bottom: 7px;
+      padding: 0;
+    }
+
+    .view-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 46px;
+      border: 1px solid #9b9b9b;
+      background: #fff;
+    }
+
+    .view-toggle {
+      min-height: 44px;
+      border: 0;
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .view-toggle + .view-toggle {
+      border-left: 1px solid #9b9b9b;
+    }
+
+    .view-toggle:hover {
+      background: #f6f6f6;
+    }
+
+    .view-toggle[aria-pressed="true"] {
+      background: var(--nyu-violet);
+      color: #fff;
+    }
+
+    .view-toggle[aria-pressed="true"]:hover {
+      background: #2d004f;
+    }
+
+    input:focus,
+    select:focus,
+    .topic-toggle:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--nyu-violet), white 72%);
+      outline-offset: 2px;
+    }
+
+    .reset {
+      min-height: 46px;
+      border: 0;
+      background: var(--nyu-violet);
+      color: #fff;
+      padding: 12px 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .reset:hover {
+      background: #2d004f;
+    }
+
+    .summary {
+      padding-block: 24px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--emperor);
+    }
+
+    .summary-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .count {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .sort-toggle {
+      border: 0;
+      border-left: 1px solid var(--line);
+      background: transparent;
+      color: var(--kingfisher);
+      padding: 0 0 0 10px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .sort-toggle:hover {
+      color: var(--stern-violet);
+    }
+
+    .topic-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .topic-pill {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--emperor);
+      padding: 5px 9px;
+      font-size: 12px;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px 24px;
+      padding-block: 16px 60px;
+    }
+
+    .results.list-view {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .workshop {
+      display: flex;
+      min-height: 100%;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--nyu-violet);
+      background: #fff;
+    }
+
+    .content {
+      padding: 22px 20px 18px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
+
+    .term {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .workshop h2 {
+      font-family: "Montserrat", Arial, Helvetica, sans-serif;
+      font-size: 21px;
+      line-height: 1.18;
+      margin: 0 0 10px;
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+
+    .description {
+      margin: 0 0 16px;
+      color: var(--emperor);
+      font-size: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .tag {
+      border-left: 3px solid var(--kingfisher);
+      background: #f7fafb;
+      color: #333;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .format-tag {
+      border-left-color: var(--nyu-violet);
+      background: #f5eff9;
+      color: var(--stern-violet);
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .actions a {
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .actions a + a {
+      border-left: 1px solid #555;
+      background: var(--nyu-violet);
+    }
+
+    .actions a:hover {
+      background: var(--kingfisher);
+    }
+
+    .results.list-view .workshop {
+      display: grid;
+      min-height: 0;
+      grid-template-columns: minmax(0, 1fr) minmax(196px, auto);
+      border-top: 1px solid var(--line);
+      border-left: 5px solid var(--nyu-violet);
+    }
+
+    .results.list-view .content {
+      display: grid;
+      grid-template-columns: minmax(98px, 0.22fr) minmax(0, 1fr);
+      gap: 4px 14px;
+      padding: 12px 14px;
+    }
+
+    .results.list-view .term {
+      grid-row: 1 / span 4;
+      margin-bottom: 0;
+    }
+
+    .results.list-view .workshop h2 {
+      margin-bottom: 2px;
+      font-size: 17px;
+    }
+
+    .results.list-view .description {
+      margin-bottom: 6px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .description-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--kingfisher);
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .results.list-view .description-toggle:not([hidden]) {
+      display: inline;
+    }
+
+    .description-toggle:hover {
+      color: var(--stern-violet);
+    }
+
+    .results.list-view .tags {
+      gap: 4px;
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    .results.list-view .tag {
+      padding: 2px 6px;
+      font-size: 11px;
+    }
+
+    .results.list-view .actions {
+      grid-template-columns: 1fr 1fr;
+      border-top: 0;
+      border-left: 1px solid var(--line);
+    }
+
+    .results.list-view .actions a {
+      min-width: 98px;
+      min-height: 44px;
+      padding-inline: 12px;
+      font-size: 11px;
+    }
+
+    .results.list-view .actions a + a {
+      border-top: 0;
+      border-left: 1px solid #555;
+    }
+
+    .empty {
+      display: none;
+      border-top: 4px solid var(--nyu-violet);
+      margin-block: 24px 70px;
+      padding: 28px 0;
+      color: var(--emperor);
+      font-size: 18px;
+    }
+
+    footer {
+      background: #1f1f1f;
+      color: var(--silver);
+      padding-block: 32px 34px;
+      font-size: 14px;
+    }
+
+    footer .wrap {
+      margin: 0 auto;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 18px;
+      border-block: 1px solid #666;
+      padding-block: 18px;
+    }
+
+    footer a {
+      color: #fff;
+    }
+
+    @media (max-width: 980px) {
+      .tools {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .reset {
+        justify-self: start;
+      }
+
+      .results {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .stern-masthead {
+        min-height: 72px;
+      }
+
+      .masthead-inner,
+      .titlebar-inner {
+        padding-inline: 20px;
+      }
+
+      .masthead-inner {
+        min-height: 72px;
+      }
+
+      .brand {
+        width: min(100%, 245px);
+      }
+
+      .brand.has-logo {
+        background-position: -18px center;
+        background-size: 245px auto;
+      }
+
+      .titlebar-inner {
+        min-height: 132px;
+        align-items: flex-start;
+        padding-block: 30px 34px;
+      }
+
+      .site-title {
+        font-size: 30px;
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+      }
+
+      .view-mode {
+        display: none;
+      }
+
+      h1 {
+        font-size: 44px;
+      }
+
+      .dek {
+        font-size: 16px;
+      }
+
+      .results {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .actions a + a {
+        border-left: 0;
+        border-top: 1px solid #555;
+      }
+
+      .results.list-view .workshop {
+        grid-template-columns: 1fr;
+      }
+
+      .results.list-view .content {
+        grid-template-columns: 1fr;
+      }
+
+      .results.list-view .term {
+        grid-row: auto;
+      }
+
+      .results.list-view .actions {
+        grid-template-columns: 1fr 1fr;
+        border-top: 1px solid var(--line);
+        border-left: 0;
+      }
+
+      .results.list-view .actions a + a {
+        border-top: 0;
+        border-left: 1px solid #555;
+      }
+    }
+
+    /* ---------- Learning Tracks: view switcher ---------- */
+
+    .view-switch-band {
+      background: #fff;
+      border-top: 1px solid var(--line);
+    }
+
+    .view-switch {
+      margin: 0 auto;
+      padding-block: 20px 0;
+    }
+
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 760px;
+    }
+
+    .mode-tab {
+      position: relative;
+      display: grid;
+      gap: 3px;
+      align-content: start;
+      border: 1px solid #9b9b9b;
+      background: #fff;
+      color: var(--ink);
+      padding: 14px 16px 13px;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .mode-tab + .mode-tab {
+      border-left: 0;
+    }
+
+    .mode-tab:hover {
+      background: var(--soft);
+    }
+
+    .mode-tab[aria-selected="true"],
+    .mode-tab[aria-selected="true"]:hover {
+      background: var(--nyu-violet);
+      border-color: var(--nyu-violet);
+      color: #fff;
+    }
+
+    .mode-tab-sub {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--emperor);
+    }
+
+    .mode-tab[aria-selected="true"] .mode-tab-sub {
+      color: rgb(255 255 255 / 0.82);
+    }
+
+    .mode-tab-badge {
+      position: absolute;
+      top: -9px;
+      right: 10px;
+      background: var(--gold);
+      color: #fff;
+      padding: 2px 7px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    /* ---------- Learning Tracks: overview ---------- */
+
+    .tracks-intro {
+      margin: 0 auto;
+      padding-block: 30px 6px;
+    }
+
+    .tracks-intro p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--emperor);
+      font-size: 16px;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      padding-block: 22px 60px;
+    }
+
+    .track-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--nyu-violet);
+      background: #fff;
+      padding: 20px 18px 0;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      color: inherit;
+    }
+
+    .track-card:hover {
+      border-color: var(--nyu-violet);
+      box-shadow: 0 10px 26px rgb(0 0 0 / 0.1);
+    }
+
+    .track-kicker {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .track-card h2 {
+      margin: 0 0 8px;
+      font-size: 21px;
+      line-height: 1.18;
+      color: var(--ink);
+    }
+
+    .track-blurb {
+      margin: 0 0 14px;
+      color: var(--emperor);
+      font-size: 15px;
+    }
+
+    .track-preview {
+      margin: 0 0 16px;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 5px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .track-preview li {
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: 8px;
+      color: #333;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .track-preview li > span:first-child {
+      color: var(--nyu-violet);
+      font-weight: 800;
+    }
+
+    .track-card-foot {
+      margin-top: auto;
+      margin-inline: -18px;
+      border-top: 1px solid var(--line);
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--kingfisher);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .track-card:hover .track-card-foot {
+      color: var(--stern-violet);
+    }
+
+    .track-card-foot .track-count {
+      color: var(--emperor);
+      font-weight: 700;
+      text-transform: none;
+      font-size: 12px;
+    }
+
+    /* ---------- Learning Tracks: detail ---------- */
+
+    .track-detail {
+      margin: 0 auto;
+      padding-block: 26px 60px;
+    }
+
+    .track-detail[hidden] {
+      display: none;
+    }
+
+    .track-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 0;
+      background: transparent;
+      color: var(--kingfisher);
+      padding: 0;
+      margin-bottom: 20px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .track-back:hover {
+      color: var(--stern-violet);
+    }
+
+    .track-back::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-left: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .track-detail-head {
+      border-top: 5px solid var(--nyu-violet);
+      padding-top: 18px;
+      margin-bottom: 26px;
+    }
+
+    .track-detail-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3.4vw, 38px);
+      line-height: 1.1;
+      color: #111;
+    }
+
+    .track-detail-head p {
+      max-width: 720px;
+      margin: 0;
+      color: var(--emperor);
+      font-size: 17px;
+    }
+
+    .track-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .track-steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .track-step {
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr) minmax(196px, auto);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--nyu-violet);
+      background: #fff;
+    }
+
+    .step-marker {
+      display: grid;
+      align-content: start;
+      gap: 6px;
+      padding: 16px 12px 16px 16px;
+      border-right: 1px solid var(--line);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background: var(--nyu-violet);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .step-level {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--kingfisher);
+    }
+
+    .step-level[data-level="Core"] {
+      color: var(--nyu-violet);
+    }
+
+    .step-level[data-level="Advanced"] {
+      color: var(--gold);
+    }
+
+    .step-body {
+      padding: 16px 18px;
+      display: grid;
+      align-content: start;
+      gap: 0;
+    }
+
+    .step-body h3 {
+      margin: 0 0 6px;
+      font-size: 19px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .step-note {
+      margin: 0 0 8px;
+      color: #333;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .step-description {
+      margin: 0 0 12px;
+      color: var(--emperor);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .track-step .tags {
+      margin-top: 0;
+      padding-top: 0;
+      gap: 5px;
+    }
+
+    .track-step .tag {
+      padding: 3px 7px;
+      font-size: 11px;
+    }
+
+    .track-step .actions {
+      grid-template-columns: 1fr 1fr;
+      border-top: 0;
+      border-left: 1px solid var(--line);
+    }
+
+    .track-step .actions a {
+      min-width: 98px;
+      min-height: 44px;
+      padding-inline: 12px;
+      font-size: 11px;
+    }
+
+    .track-step .actions.single {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 980px) {
+      .track-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .track-step {
+        grid-template-columns: 104px minmax(0, 1fr);
+      }
+
+      .track-step .actions {
+        grid-column: 1 / -1;
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .mode-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .mode-tab + .mode-tab {
+        border-left: 1px solid #9b9b9b;
+        border-top: 0;
+      }
+
+      .mode-tab-badge {
+        top: 8px;
+      }
+
+      .track-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .track-step {
+        grid-template-columns: 1fr;
+      }
+
+      .step-marker {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 12px 16px;
+      }
+    }
+
+    .inline-link {
+      border: 0;
+      background: transparent;
+      color: var(--kingfisher);
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .inline-link:hover {
+      color: var(--stern-violet);
+    }
+
+    .preview-term {
+      color: var(--emperor);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header>
+    <div class="stern-masthead">
+      <div class="masthead-inner">
+        <div class="brand" id="brandLogoSlot" role="img" aria-label="NYU Stern School of Business logo">
+          <span class="brand-placeholder">Logo placeholder: add stern-logo.png</span>
+        </div>
+      </div>
+    </div>
+    <div class="section-titlebar">
+      <div class="titlebar-inner">
+        <div class="site-title">
+          <strong>Learning Science Lab</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="wrap page-head" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Previous Workshops</h1>
+        <p class="dek">Browse archived Learning Science Lab sessions by topic, title, description, and available workshop resources.</p>
+        <a class="return-link" href="https://www.stern.nyu.edu/portal-partners/faculty-staff/learning-science-lab/workshops">Return to Workshops</a>
+      </div>
+    </section>
+
+    <div class="view-switch-band">
+      <div class="wrap view-switch">
+        <div class="mode-tabs" role="tablist" aria-label="Choose how to browse workshops">
+          <button class="mode-tab" id="tabIndex" type="button" role="tab" data-mode="index" aria-selected="true" aria-controls="panelIndex">
+            Search the Archive
+            <span class="mode-tab-sub">Every workshop, filterable by topic</span>
+          </button>
+          <button class="mode-tab" id="tabTracks" type="button" role="tab" data-mode="tracks" aria-selected="false" aria-controls="panelTracks" tabindex="-1">
+            <span class="mode-tab-badge">New</span>
+            Learning Tracks
+            <span class="mode-tab-sub">Guided paths, foundation to advanced</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="panelIndex" role="tabpanel" aria-labelledby="tabIndex">
+    <section class="tools-band" aria-label="Workshop controls">
+      <div class="tools">
+        <label>
+          Search
+          <input id="search" type="search" autocomplete="off" placeholder="Title or description">
+        </label>
+        <fieldset class="topic-filter" id="topicFilter">
+          <legend>Topic</legend>
+          <button class="topic-toggle" id="topicToggle" type="button" aria-expanded="false" aria-controls="topicMenu">All topics</button>
+          <div class="topic-menu" id="topicMenu" hidden>
+            <label class="topic-option"><input type="checkbox" name="topic" value="AI &amp; Automation">AI &amp; Automation</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Assessment &amp; Feedback">Assessment &amp; Feedback</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Brightspace &amp; LMS">Brightspace &amp; LMS</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Classroom Technology">Classroom Technology</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Collaboration &amp; Discussion">Collaboration &amp; Discussion</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Course Design">Course Design</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Google Workspace">Google Workspace</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Media &amp; Slides">Media &amp; Slides</label>
+            <label class="topic-option"><input type="checkbox" name="topic" value="Student Engagement">Student Engagement</label>
+          </div>
+        </fieldset>
+        <fieldset class="view-mode">
+          <legend>View</legend>
+          <div class="view-options">
+            <button class="view-toggle" type="button" data-view="card" aria-pressed="true" aria-controls="results">Cards</button>
+            <button class="view-toggle" type="button" data-view="list" aria-pressed="false" aria-controls="results">List</button>
+          </div>
+        </fieldset>
+        <button class="reset" id="reset" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="summary">
+        <div class="summary-main">
+          <div id="resultStatus" role="status" aria-live="polite" aria-atomic="true"><span class="count" id="count">0</span> workshops shown</div>
+          <button class="sort-toggle" id="sortToggle" type="button">Newest First</button>
+        </div>
+        <div class="topic-strip" id="activeFilters"></div>
+      </div>
+      <div class="results" id="results"></div>
+      <div class="empty" id="empty">No workshops match the current filters.</div>
+    </section>
+    </div>
+
+    <div id="panelTracks" role="tabpanel" aria-labelledby="tabTracks" hidden>
+      <section class="wrap tracks-intro" id="tracksIntro">
+        <p>Learning Tracks group past workshops into short sequences on a single theme, ordered from foundation to advanced. Pick a track to see the recommended order and why each session comes next. Every workshop is also available in <button class="inline-link" id="backToArchive" type="button">the full, searchable archive</button>.</p>
+      </section>
+      <section class="wrap" id="trackOverview">
+        <div class="track-grid" id="trackGrid"></div>
+      </section>
+      <section class="wrap track-detail" id="trackDetail" hidden>
+        <button class="track-back" id="trackBack" type="button">All learning tracks</button>
+        <div class="track-detail-head" id="trackDetailHead"></div>
+        <ol class="track-steps" id="trackSteps"></ol>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <div>NYU Stern Learning Science Lab</div>
+        <div><a href="https://www.stern.nyu.edu/">stern.nyu.edu</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/json" id="workshop-data">[
+  {
+    "id": "workshop-49",
+    "title": "AI & Exams",
+    "term": "Fall 2026",
+    "description": "Design exams that measure what students know in an AI-enabled classroom. This boot camp helps you decide when AI should be allowed or restricted, weigh the benefits and limitations of NYU proctoring tools, and maintain academic integrity in person or remotely.",
+    "categories": [
+      "AI & Automation",
+      "Assessment & Feedback"
+    ],
+    "recording": "https://stream.nyu.edu/media/Learning+Science+Lab+Bootcamp+-+AI++Exams/1_d2ufqayo",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSFgnPc_aitLhasiFUNL_lzZ7LPPVdAmQJ4tpIwngfo4XYo7Slg6RVDb_l2prdIY4aAM53Zcdo-zxLi/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": -2
+  },
+  {
+    "id": "workshop-48",
+    "title": "100% in-class participation",
+    "term": "Fall 2026",
+    "description": "Learn strategies to address three core barriers to engagement in your classroom: distractions, low engagement, and poor-quality contributions.",
+    "categories": [
+      "Course Design",
+      "Student Engagement"
+    ],
+    "recording": "https://stream.nyu.edu/media/100+in-class+participation/1_47ns14d7/399341503",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQUHJgQXXJFf-RhWe1FEt4B09bQEct1XbEre7a4wS9Wwq2FQS8l_M-Ksm53M10u7ZXL8JUeGbzux81n/pub?start=false&loop=false&delayms=60000&slide=id.g22d18e3a869_0_2",
+    "sourceOrder": -1
+  },
+  {
+    "id": "workshop-47",
+    "title": "Prepare to teach",
+    "term": "Fall 2026",
+    "description": "Prepare for day one with a practical plan for your Brightspace course site, your first message to students, and an opening activity that sparks discussion. This full-length workshop also helps you choose an AI and assessment strategy that fits your course, so you can begin the semester prepared and confident.",
+    "categories": [
+      "Brightspace & LMS",
+      "Course Design",
+      "Student Engagement"
+    ],
+    "recording": "https://stream.nyu.edu/media/Learning+Science+Lab+Workshop+-+Prepare+for+Day+One+of+Classes/1_5wyv3lna",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTAusjwj4MT_U7WTn5-Sl_BRfyfZV24sNNIfAeNFFlwNHLFJg5dDJAgrITillcnnMgMJJDXKrdrP2pL/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 0
+  },
+  {
+    "id": "workshop-1",
+    "title": "Easy apps for your course",
+    "term": "Spring 2026",
+    "description": "Turn a course need into a lightweight mini-app students can use before, during, or after class. This session shows how to spot good use cases and build a simple tool that supports practice, preparation, or follow-up.",
+    "categories": [
+      "Classroom Technology"
+    ],
+    "recording": "https://stream.nyu.edu/media/Learning+Science+Lab+Workshop+-+Easy+Apps+for+Your+Course/1_okrplmx6",
+    "slides": "https://docs.google.com/presentation/d/15c0JBpZSkhdJDdudLZfFVBPBgahQXfF2M28tmnyvtrI/edit",
+    "sourceOrder": 1
+  },
+  {
+    "id": "workshop-2",
+    "title": "A.I.-Powered Slides",
+    "term": "Spring 2026",
+    "description": "Move beyond generic slide decks by using AI to generate stronger visuals and faster first drafts. You will see practical Gemini workflows for producing polished teaching assets and assembling them into slides.",
+    "categories": [
+      "AI & Automation",
+      "Media & Slides"
+    ],
+    "recording": "https://stream.nyu.edu/media/Learning+Science+Lab+Workshop+-+AI+Powered+Slide+Design/1_5yvgrruy",
+    "slides": "https://gamma.app/docs/AI-Powered-Slide-Design-rubnphtr6guwqmr?mode=doc",
+    "sourceOrder": 2
+  },
+  {
+    "id": "workshop-3",
+    "title": "Host a guest speaker",
+    "term": "Spring 2026",
+    "description": "Make guest speakers feel less like one-off visits and more like durable learning moments. This 15-minute boot camp covers common hosting pitfalls, student preparation, and follow-up moves that help students apply what they heard.",
+    "categories": [
+      "Course Design"
+    ],
+    "recording": "https://stream.nyu.edu/media/Learning+Science+Lab+Bootcamp+-+Host+a+guest+speaker/1_ht7817vx",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSXTQHE78GKD0bidIiIzJXun5tsOElb3CJAslMLxMNwHX01e9EFWz9gMV27s0p630r0hpnahtfb6dzT/pub?start=false&loop=false&delayms=60000&slide=id.p",
+    "sourceOrder": 3
+  },
+  {
+    "id": "workshop-4",
+    "title": "Prepare to teach",
+    "term": "Spring 2026",
+    "description": "Get the first week under control with a fast setup routine for Brightspace, student communication, and day-one engagement. This 15-minute boot camp shows how to upload essentials, welcome students, and run a no-prep opening activity.",
+    "categories": [
+      "Brightspace & LMS",
+      "Course Design"
+    ],
+    "recording": "https://stream.nyu.edu/media/Learning+Science+Lab+Bootcamp+-+Prepare+to+Teach/1_v6guowq9",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTNAe3K5X50OxKhk_cbzSjAs88HtCu4T1YcdaoQN-j4FYQfRm59KHPcTS_42WegxsXmlmUKFcZ-G4hF/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 4
+  },
+  {
+    "id": "workshop-5",
+    "title": "Create interactive activities with H5P",
+    "term": "Fall 2025",
+    "description": "Add quick, interactive knowledge checks to your course site without building a large assessment workflow. This 15-minute boot camp shows how H5P can surface what students understand, where they need review, and how to use those signals online.",
+    "categories": [
+      "Brightspace & LMS",
+      "Assessment & Feedback",
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/eDFBUoNrLfMFFODPgEJA2Vxc-YbI7-qFx7iT5VshFYyvgu2YLmnq1a7K2kiQRCvxvCKKpMqdFJo9fy-0.fiUekURKBdUrI-4Y?eagerLoadZvaPages=&accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/hvOopfdatqSyD2GFH7K65fn4ontIrj1E5ab-C07ze7LffytwbKFGpOX6iyFx0Ooe.YwT-2oPqptt140Na",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRWuQGWMtLjJUVFeCI0ZrmuUcYI99wm-32kDo2-7nF2Eiz7r1dYijc6VEoukCOj5NCfK3gpQT7YCANL/pub?start=false&loop=false&delayms=60000&slide=id.g22d18e3a869_0_2",
+    "sourceOrder": 5
+  },
+  {
+    "id": "workshop-6",
+    "title": "Supercharge class participation with active learning",
+    "term": "Fall 2025",
+    "description": "Make participation easier to start and more productive once it begins. This workshop packages five classroom-ready strategies so students arrive prepared, stay attentive, and do deeper thinking in the room.",
+    "categories": [
+      "Student Engagement"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/UCZ1PT1rkcgzFjJf-2JvlLk1McknRDaGOU5AuKoxgAaj7y02dXyuvnQt49T6MRN02_YRnm0YFGqRbDI6.c_-Jayn5BwL68iS3?autoplay=true",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vS6k02Aptz1Q29ABzm3svrvcee0Z3qz5EnrEVIEIUoyVcpHvkcsdYpavKUcP3xFu9BFQ8QthXIe6xsJ/pub?start=false&loop=false&delayms=60000&slide=id.g36fa2029f25_0_0",
+    "sourceOrder": 6
+  },
+  {
+    "id": "workshop-7",
+    "title": "Motivate students to read",
+    "term": "Fall 2025",
+    "description": "Help students come to class ready to use the readings, not just skim them. This 15-minute boot camp shares low-effort, high-impact ways to incentivize reading, build accountability, and keep expectations clear.",
+    "categories": [
+      "Student Engagement"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/keVQj4fd5inuYGP4k9ghxNvjseLYlisqiRmdDbaulu57ruZd2bnhw2OiGre2mkg.d-H4Nd65r1JapDOb?startTime=1760631391000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRe2huHqfSq76NN0XFO3NMjrl62UfgUPXeT8yhcuBbPQTPTqwuiat2nY-ogh5E_bqOTYrOW24MPPOHt/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 7
+  },
+  {
+    "id": "workshop-8",
+    "title": "Easy chatbots for your course",
+    "term": "Fall 2025",
+    "description": "Give students a course-bounded AI assistant without opening the door to generic answers. This 15-minute boot camp shows how NotebookLM can help students locate information, clarify concepts, self-quiz, and practice responsible AI use.",
+    "categories": [
+      "AI & Automation",
+      "Course Design"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/ircCkwGakK9If1eZHSTvv8Zh5Td9NfLewAWRqcO0EeiPtBxSIDLD1OBnPilzFzoG.Jm0v9VSZcVTqEbsW",
+    "slides": "https://docs.google.com/presentation/d/1KRxIHSZ9EBV_wRW-EOibmCbr-FDusJz6TpSGxzC2XeU/edit?usp=sharing",
+    "sourceOrder": 8
+  },
+  {
+    "id": "workshop-9",
+    "title": "Anatomy of a GPT",
+    "term": "Spring 2025",
+    "description": "Demystify custom GPTs and leave with a clearer sense of when one is worth building. This 15-minute boot camp walks through examples and the Lab's creation process so you can imagine targeted assistants for your own course.",
+    "categories": [
+      "AI & Automation"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/e1LJZvI1msz70SIehEtwWRmTMlXVBGNu_7odQD_lP_A3oq7lsZD_offnv3HWX6I2ag6CUmIyHA2NlJU2.CBY1fwQiOvI8PIgl?accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/QLHoe1-hOoLoKB_-arS5_o_redVAjt4zr-HLsCTiCJgbOYx7X4wzW5-em3n92DS3.OQEOqukRutdRI0fs",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTWLSg6k7ycyMkHXKKIcLfqDECg8YpsLoHn9wi2XNTmOFmILnD6Mfpk073LG-Lc9ob1IU5zY0LI1Aie/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 9
+  },
+  {
+    "id": "workshop-10",
+    "title": "Recording teaching videos",
+    "term": "Spring 2025",
+    "description": "Make at-home teaching videos cleaner, clearer, and easier to produce. This in-person workshop covers practical media-production choices and a NYU Stream self-recording workflow you can reuse.",
+    "categories": [
+      "Media & Slides"
+    ],
+    "recording": "https://www.youtube.com/watch?v=1YM_Qs5-gr0",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTvJspeGq4HFpdafYHdBGP9NhGGERpIJH8V6RYfMKCerLlRQJKifgliE_E1NAdWJO9LlZiCb7FhpMBS/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 10
+  },
+  {
+    "id": "workshop-11",
+    "title": "Collect student feedback",
+    "term": "Spring 2025",
+    "description": "Get better student feedback while there is still time to act on it. This 15-minute boot camp compares three collection methods and helps you match the right tool to the feedback you need.",
+    "categories": [
+      "Assessment & Feedback"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/GO5g-smiq7GwqPU3BCXI2bG9R4KM1Q-SvfHt_0ZkfFU9OSpaAnTd-82cuHM1dd3r.DQOa9DCcOFbzCZce?startTime=1742314584000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSkxfixWfNBXDOtZ-ZceK-dqEVzMZN1rVDKVj7nIJXjQacpcutqbsScQblfiHgepf_k2Z1n9axWhaqy/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 11
+  },
+  {
+    "id": "workshop-12",
+    "title": "Level up your PowerPoint skills",
+    "term": "Spring 2025",
+    "description": "Build PowerPoint slides that look more polished and support the way students actually learn. This workshop focuses on practical tools and design moves faculty can use to improve clarity, visual appeal, and flow.",
+    "categories": [
+      "Media & Slides"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/Gd66l_9TImRRze5_pHCpmkPPOVTIgtr236g7sAj5xc6-PtZqEikldYlVTQxBdd0L1aShW6OGeZOF87mO.CVNUgiL2XVc_lJvN?accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/2uUdhgm7oGf7nkv58c7FkbJ4SL-Odil_RyT786Cc2dE2rxmjPFDbleKdANsImzca.qK0x5ht6pTfzkzaC",
+    "slides": "https://docs.google.com/presentation/d/1sTmu-1okO6-CN4NbBCLwBnzMnbLc_srQsxmOWqly4z0/edit",
+    "sourceOrder": 12
+  },
+  {
+    "id": "workshop-13",
+    "title": "The landscape of AI",
+    "term": "Spring 2025",
+    "description": "Use generative AI as a practical productivity partner for teaching. This workshop highlights ways faculty can draft, adapt, and improve instructional materials while keeping the learning goals in view.",
+    "categories": [
+      "AI & Automation"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/qIk-BsKA9rFbflWa2GUV2EfeTGCD5h24_8PUJ5Q9iVhBcGb0QxB1fk2qDaqeL8fy.6ve18-IEAEx4n1xi?startTime=1738774879000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSPJNkDrIO1-AZlWlNCi_tYgZ-YjzENpacaVp5bZuUJSY5vlOVa9JVVwvIEVIE21maW5fQ462c2M5q5/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 13
+  },
+  {
+    "id": "workshop-14",
+    "title": "Facilitate peer feedback",
+    "term": "Fall 2024",
+    "description": "Make peer feedback more useful, focused, and easier for students to trust. This workshop explains what makes feedback effective, where it fits best, and how to avoid common problems when students review one another's work.",
+    "categories": [
+      "Assessment & Feedback",
+      "Collaboration & Discussion"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/XSIrZdR3mvhhZADTr2FLufUMilOXsNdnIt-Esutb8g2Vg4b1bBYUsdlk8oZ0u-1S2PSYje3yDdAes1oc.0lYn7P7pfN5x_Lo6?canPlayFromShare=true&from=share_recording_detail&startTime=1732036649000&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/v6jejB5YVENYEuhtYYl3Tkc6_bSpR_olPPykuG85fDXCho4PckQs1unU8Z6wKY6U.mEh06hRwN2wpCk2Q%3FstartTime%3D1732036649000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTAR-uB7cRo6-H2-3PFuncAgclw9BEVlOfOb2Zfo5OC4KGemRxp1ctc-IbmmuwXZ0_mW8S_NNfQjYTF/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 14
+  },
+  {
+    "id": "workshop-15",
+    "title": "Improving your slide decks",
+    "term": "Fall 2024",
+    "description": "Turn existing slide decks into clearer teaching tools. This workshop reviews design principles and shows how to apply them so slides are easier to follow, better paced, and more visually effective.",
+    "categories": [
+      "Media & Slides"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/ArnPvfT71GjJtdQbS0OG_omOfjleqjWMxWauLp0IAvu2-YEaJ5y2SImEe4SkLb-P1DNseikeD3v2MGMx.RSRcTcbP37FUf08y?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/sILnXIjcfA0eSiZSn_wgbMfImNc2BmD_BCakDeXgqvBcOfklh_2MnP0J0ClH1Tpi.BK3Ji67wb4os-RZI",
+    "slides": "https://docs.google.com/presentation/d/1k4sI39I61a1UYe7o3DCba8MGQmCmSabbszKMH-fffOg/edit?usp=sharing",
+    "sourceOrder": 15
+  },
+  {
+    "id": "workshop-16",
+    "title": "Live in-class polling",
+    "term": "Spring 2024",
+    "description": "Bring more students into the conversation with quick live polling. This 15-minute boot camp demonstrates three Poll Everywhere approaches for checking understanding, prompting discussion, and making class time more interactive.",
+    "categories": [
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/l6nqgWwOS_IIxp7gi0hJLmvKfyrWhUdSa26Q-0UysDGuHadotnEueADo9YCvBwBdSp00Z9FfmLSiiCuO.M0-AMJGp_CSnrpHD?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/7i4IV8xg5eOaIO5xB7tTvtVZWERtZiAbtxQA1wvuHHoyyMWmVfwYxHt8jR2aTw6s.NViKN3PyFEHKsE7H",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQDX31k12wAO2eV5m1ciiAg0pDcrcutL9K835M1yTPm2Zst9HQPI74SQSpgCBaJ2nIw3Z7_lE4Cb3sw/pub?start=false&loop=false&delayms=60000&slide=id.g2c8debeb54b_0_55",
+    "sourceOrder": 16
+  },
+  {
+    "id": "workshop-17",
+    "title": "What's new with Zoom?",
+    "term": "Spring 2024",
+    "description": "Get up to speed on newer Zoom tools that can make online and hybrid teaching smoother. This 15-minute boot camp points out useful platform updates and where they can improve common teaching moments.",
+    "categories": [
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/c7b6d94hCLd6I8m9rybiAW8uDxOEkCCXlM0REN0iZC9pkGn8DCFZxkcp-bvj2geCCuec-7GqXQzaXZ7z.PmAZ_TX7fz18cZez?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/Q3VOYQCCC1V_S9QH-qF5oULupnaDQhK5vLmvt4DiFQpCLBIdpQCVzBo5zduiJ6sL.6uLDJ1sgAu-9EhBc",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSfXqtDswjPAIP56cLOad-bRniPcGWyakoCjTtWBxq2HUvXykESibq1oZN_yrYaSifbZzGmTfU4O5T-/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 17
+  },
+  {
+    "id": "workshop-18",
+    "title": "Discover Edtech Solutions",
+    "term": "Spring 2024",
+    "description": "See what emerging teaching tools are worth your attention before you spend time testing them yourself. This workshop showcases edtech options the Lab is exploring and connects each one to practical classroom uses.",
+    "categories": [
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/MeECu2BcX8ikbTV73Y8coUb3CvnlxJDUiONwiQ6UnQQ6gHpdfy0csUql9rmuhk6jxs2jS2KPiOcs4d6C.7dfV_sJFBxdSoVBu?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/YP7KmQbSfBEw-jlIK6s2xBNcoQeWW7cTMYBCXQNxFYdjgraCEUSHnHtKHhdDE7I3.Wqp01XguiMvlHbvC",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRUtVolrBwCDug6D21AbB4qjZu1_kqBBZsDyYRayz4EFhE8Krt9c5b8kfFXs84MgwybfzsQiUctXggb/pub?start=false&loop=false&delayms=60000&slide=id.g2abfb44b6dc_0_153%20",
+    "sourceOrder": 18
+  },
+  {
+    "id": "workshop-19",
+    "title": "Building rubrics with generative AI",
+    "term": "Spring 2024",
+    "description": "Create clearer learning outcomes and stronger rubrics with help from generative AI. This workshop walks through a practical process for drafting, refining, and using rubrics that make expectations easier for students to understand.",
+    "categories": [
+      "AI & Automation",
+      "Assessment & Feedback",
+      "Course Design"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/ajkjDL1Yyk4CxXhkxXdzI5j2AmWOigWxgdnoOepTZLEoj5YgKy-mwkFj3rbv8JZwSgx1XlGcTay9FbYM.n4d7HeUbSEzaKTxb?canPlayFromShare=true&from=share_recording_detail&continueMode=true&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/2WO2t45B2ZqOYLp8kzVg05N4XaM2GnI8LP0aMa_7NpIBgAhAEH4iMuewNqTXRQCZ.Am-TtxCWIDrOhG2u",
+    "slides": "https://docs.google.com/presentation/d/1arwH6MfTSvhYxlvRS7Qengch6mSW2-a2LFVAWwtxp7U/edit#slide=id.g2abfb44b6dc_0_153",
+    "sourceOrder": 19
+  },
+  {
+    "id": "workshop-20",
+    "title": "Designing group activities",
+    "term": "Spring 2024",
+    "description": "Make group work feel purposeful instead of improvised. This workshop shows how to structure collaborative activities that are lively, manageable, and aligned with what students need to practice in class.",
+    "categories": [
+      "Collaboration & Discussion"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/7nXinTQH40fF6wa9FeTCXl2pg7ITeN49PPySOHm84fO55XNWURVYOkKkskUyAN2w.UVlEnXoOotjGa-u9",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSHVgqb0mi8-N5-wjP0LkPtwTdRB4q8amXc9FaJWH_n2CYPgx7tnEvyiOY6HkfBOUkA4ZcHpZoRaXQY/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 20
+  },
+  {
+    "id": "workshop-21",
+    "title": "Improving your slide decks",
+    "term": "Fall 2023",
+    "description": "Turn existing slide decks into clearer teaching tools. This workshop reviews design principles and shows how to apply them so slides are easier to follow, better paced, and more visually effective.",
+    "categories": [
+      "Media & Slides"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/0S56Y7qK0eMk--Wv_8Dc-Bdi-nbKLoHHYka4UBmu7sLyNu4vEsu8b86DibgaxBCUeteFDfLQzDeDwWJa.sgbvnkqe8hFjQ7Gg?canPlayFromShare=true&from=share_recording_detail&startTime=1702401468000&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/yqYmQXXHwDdY2Pwr2vNcpT-uZUpK4ocPz8R2lT-Suo46lIJaSVVWoOskWdei5eZ7.nJrWursPrVo56oOT%3FstartTime%3D1702401468000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTNlEz-Fydu-iWzS-r1i-KJ1UDFgubAlfEG7l6K2ZeAsujYHkr8_42AlUW4Gnq3mV6ffgNZVZ-_3n-o/pub?start=false&loop=false&delayms=60000&slide=id.g22d18e3a869_0_2",
+    "sourceOrder": 21
+  },
+  {
+    "id": "workshop-22",
+    "title": "Boost student motivation",
+    "term": "Fall 2023",
+    "description": "Strengthen student motivation with small course-design choices that make learning feel more achievable and worthwhile. This 15-minute boot camp reviews what drives motivation and practical ways to build it into your teaching.",
+    "categories": [
+      "Student Engagement"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/Zd5Mvj8ivUbi_EPGA74i5D0me0q2qgg8D3H23x09fKTdGYe00lXnfJG2l4k5fDlp.bCsq0X06qiFmd-lf?startTime=1701969362000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSvPOL8WarOJPcZLhp4W7NH8cmKYro5Yq1W1Q2b7L1K81KcpeV0OSx-IxW_wrxbBdcRepa97vdnXp49/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 22
+  },
+  {
+    "id": "workshop-23",
+    "title": "Google Forms 101",
+    "term": "Fall 2023",
+    "description": "Use Google Forms for quick formative assessment without adding complexity to your course. This 15-minute boot camp covers the basics, useful teaching scenarios, and ways to gather information you can act on.",
+    "categories": [
+      "Google Workspace"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/_6HfOOn0yK4zhnZ2bEOun9KFsTG1gmTaL5gPLA8lkfXcwc88hEqxcu-ha9JfcFye.cppWRSn11IODWq7W?startTime=1699291174000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQaJb4-zS9x6zAgltsghh0MyOs7_Ac_5CdkMu1vN_Nn2ovOkXSIpx88c-Wm06HfYpTh7yeO9PFxo1Qy/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 23
+  },
+  {
+    "id": "workshop-24",
+    "title": "Adapting exams for the age of AI",
+    "term": "Fall 2023",
+    "description": "Rethink exams and assignments for a classroom where generative AI is always available. This workshop explores strategies for preserving rigor, updating prompts, and designing assessments that better reflect what students should be able to do.",
+    "categories": [
+      "AI & Automation",
+      "Assessment & Feedback"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/ju6INIZqFOmRXvZwMkGzJGB5c6QPp6ou4jwa1g1xz0-2MgLsrq3UGw-KSsG40sRWbEUJf0thqrpa-lWx.mmDNtopK_CjvLZNE?canPlayFromShare=true&from=share_recording_detail&startTime=1697814204000&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/wXsaeNZrhBHBYn0eRb9n4COx8Prv64HiuXqpDsViATLFgQiZR2Vj87mBsl5xRI-6.wCdMKEf6n-JkCeQl%3FstartTime%3D1697814204000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRUx3kNFNEsWI40tzW6oOQSgTJ07RCzGDC6IM-yYz-CxS-4FyAS2hzcoQ_QhT97F0WWgyTuwneKXoNe/pub?start=false&loop=false&delayms=60000&slide=id.g28a79ae1d9c_0_106",
+    "sourceOrder": 24
+  },
+  {
+    "id": "workshop-25",
+    "title": "Make your podium work for you",
+    "term": "Fall 2023",
+    "description": "Make the classroom podium an ally instead of a distraction. This 15-minute boot camp shares presentation strategies, student follow-along options, and a practical asynchronous resource for smoother in-room teaching.",
+    "categories": [
+      "Classroom Technology",
+      "Media & Slides"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/VK7H9j34cC8CnVbJ1PA18DfafrH-daKMMXQ-jHTaTUeYGxZ_ZIqyL7UP3wdhA8a0QQLgg_MovIpmD9cq.nbp17gu87lMx3G_h?canPlayFromShare=true&from=share_recording_detail&startTime=1695745018000&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/wa40LOSdG3CmFzH2HCHbL1G-78g32VcefJqn4E_H8WrgQIJrItxTy4C0MvwQqtTb.QhTORSULxJJiRp95%3FstartTime%3D1695745018000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRp-Nehur4qLFTqs-BWd6c8r33-L6FMVTxNNWIil0qv1_nnLqM72S9U9GjLHJSh-4ELQiD3fGp6ixZ3/pub?start=false&loop=false&delayms=60000&slide=id.g1e7d63463b1_0_314",
+    "sourceOrder": 25
+  },
+  {
+    "id": "workshop-26",
+    "title": "Back to Brightspace",
+    "term": "Summer 2023",
+    "description": "Start the semester with a Brightspace site that is ready for students. This 15-minute boot camp covers course-site activation, content reuse, and welcome announcements so your setup is faster and more consistent.",
+    "categories": [
+      "Brightspace & LMS"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/LjZ2QSsMMRF_RpA4CKn-lXlUCXNVeGaM01LoDPlB6p0Mfprb4xYeTP4l925FTX7y8fTFkmrC7TA5KwoZ.9kZ0hLpNVpQUTIgT?canPlayFromShare=true&from=share_recording_detail&startTime=1693325838000&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/Q3xA4q2ql4R8PqnimNwiVwgyn26-0Wr09fhrtjY6jreyk32W6h0xabVPC_EB50eH.yeD8Lc110N_LDMOq%3FstartTime%3D1693325838000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vS2oXgic9dNgG1D9fsJxkligfPHeFLFJwXV6lQDLRIDRB0l_z0LA6o41At2w0UZQE_zFCJhiiv98UNJ/pub?start=false&loop=false&delayms=60000&slide=id.g1e1acfeec1c_0_17",
+    "sourceOrder": 26
+  },
+  {
+    "id": "workshop-27",
+    "title": "Syllabus Refresh",
+    "term": "Summer 2023",
+    "description": "Rework your syllabus into a clearer, more student-centered guide for the first day and beyond. This workshop highlights design choices that help students understand expectations, navigate the course, and start with confidence.",
+    "categories": [
+      "Course Design"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/uwLv-s569aDKMYDB0_j8FFyZz9_ez3PfbxG44_R287JIf6g2P9YVn6M4LA8BApwpaUXAKrvZHlfh8i29.P_uTczRz3fMg8FIU?canPlayFromShare=true&from=share_recording_detail&startTime=1692721101000&componentName=rec-play&originRequestUrl=https%3A//nyu.zoom.us/rec/share/9OFbF8JfczGlOk-PpI5AucBbISGsdPgKsODZCjvvHLtHdBfpP-xOLZL3tDSYERtE.57o0L6OuSsfaecDm%3FstartTime%3D1692721101000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTZiywISOnkLKdmnIvegzHT4nRr7fKRfbEyDCNlLtceD7mzRjvcEsTXJUaAZL7smwKU9_YzXe6DlFKO/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 27
+  },
+  {
+    "id": "workshop-28",
+    "title": "Google Drive 101",
+    "term": "Summer 2023",
+    "description": "Bring more order to your course files with a simple Google Drive setup. This 15-minute boot camp shows how to organize, manage, and share materials so students and instructors can find what they need.",
+    "categories": [
+      "Google Workspace"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/G4F91o4nSLBvK_RumFSUD3q3W9InkCoLiUthTxcohJlBNBxoC9JTgF68Q3WBKrU.ef2P56VlDDcIHhW8",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRc-b6gJEfM0hHW0TfK57SfxtBVkz_dDxCyQeYdrCWDiN5P62VjEYyoqFMf_fBiEungmcHJSrZyYsdb/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 28
+  },
+  {
+    "id": "workshop-29",
+    "title": "Give an exam in Brightspace",
+    "term": "Spring 2023",
+    "description": "Run Brightspace exams with more confidence and fewer last-minute questions. This 15-minute boot camp shows how to use the Assignments tool to set up and deliver an exam workflow.",
+    "categories": [
+      "Brightspace & LMS",
+      "Assessment & Feedback"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/a8oAsyr558wTJlCmsl9Gx48Yn8MbcRoD06H3rsuM3pLaGUtGOndwJ3bIYWUjisu2.F6ih8TGyODgeOS9S",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQFmS_wrSVl4zICyGnvE2xNAJgdrP6mq71PKwQISvygdiObKDE5MdDNQOKKAH98tsHC-zlAOdfmE0Oa/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 29
+  },
+  {
+    "id": "workshop-30",
+    "title": "Help students give better feedback",
+    "term": "Spring 2023",
+    "description": "Help students give feedback their peers can actually use. This 15-minute boot camp focuses on simple ways to improve verbal and written peer feedback so review activities become more specific, constructive, and valuable.",
+    "categories": [
+      "Assessment & Feedback"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/okbh4pp3ABnBSce_kqsPi17tzQ-YOj7FpQ9XOotdHxKsoqHZDR-srg_RSUJy8QZF.smEzTpgJMflFaU40",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRc-b6gJEfM0hHW0TfK57SfxtBVkz_dDxCyQeYdrCWDiN5P62VjEYyoqFMf_fBiEungmcHJSrZyYsdb/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 30
+  },
+  {
+    "id": "workshop-31",
+    "title": "Google Docs 101",
+    "term": "Spring 2023",
+    "description": "Use Google Docs as a cleaner space for shared writing, collaboration, and student-facing materials. This 15-minute boot camp covers the basics of creating, editing, and sharing Docs for course use.",
+    "categories": [
+      "Google Workspace"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/UjS1l3ReSU8B-i061qvVyGdBGHxENtPGBmekTPQiGCB0OiHMRtOO2ZYi5t15I8uv.oFN6pDTX7dH2u6xz",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTwNw4JqnI-2Uk3gyE54GL1Ee6yGC6FinPI4X1lr-FYPs4uiO6OhLzRpfMqE8wBTTaBoRuj8JF9V7cO/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 31
+  },
+  {
+    "id": "workshop-32",
+    "title": "Level up your live demos",
+    "term": "Spring 2023",
+    "description": "Keep live demonstrations engaging without letting technical friction take over. This workshop shares three strategies for planning demos that stay focused, resilient, and useful for students.",
+    "categories": [
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/PkY_lSpLUASAV8wqKmkA7tyP113yXfNCwPvwfRSb3_azPxfGobdy9Jw9jLw8eJwi._mXzr7lCBkwAF1_t?startTime=1677777541000",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQoraO1Vpo1dWlYNrrftwyRGDDjv4vkfqjVoJIw20wgr1dOsndnSF5EGX1Ty-vM5eMjynnIneXNu67A/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 32
+  },
+  {
+    "id": "workshop-33",
+    "title": "Enhance online discussions",
+    "term": "Spring 2023",
+    "description": "Make online discussions more than a participation checkbox. This 15-minute boot camp shares three ways to make discussion tools more productive, engaging, and connected to course goals.",
+    "categories": [
+      "Collaboration & Discussion"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/-zhhxohYeZFZlmzqRKKwS2AO-0UHQxSjmC66xDuw3az9Damenrh-Z3UaXXF5Us09.xOAoAhZVJUOsOKGg",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRJvNEM3lJebRg5fllRFWpawGcLVaYrjC86AwytyDCigZRd1qf_FLLWzzZK0R-BMeHlQjIb7TIVmFSO/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 33
+  },
+  {
+    "id": "workshop-34",
+    "title": "Designing group activities for the classroom",
+    "term": "Spring 2023",
+    "description": "Design group activities that give students a clear reason to collaborate. This workshop helps faculty identify good moments for group work, choose practical activity structures, and use technology to support the process.",
+    "categories": [
+      "Collaboration & Discussion"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/lDI0TQquOPXr720eyx_GGhK0j2oNtU9U4F_RViiAFeSXekfKdNjXIaBQ-ZQy0SLu.uNBkTwJqkyjhPYoG",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQgRBzP6og8bUyTvgoo8xdvH7fgo6NHMOVPk34m4_UIIto5q-ttmILm15yXcLntw353k0ogUBGuKX9a/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 34
+  },
+  {
+    "id": "workshop-35",
+    "title": "Learn to grade in Brightspace",
+    "term": "Spring 2023",
+    "description": "Make Brightspace grading more organized from the start. This workshop covers gradebook setup, grade items, Assignments, Quizzes, and submission grading so the system supports your workflow instead of slowing it down.",
+    "categories": [
+      "Brightspace & LMS",
+      "Assessment & Feedback"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/Z9omNTPu9HFjRb7NPPvFgs5WrWn6FZ6ZGZKzRVZSL-5Qf04D9EUEugYuFC3kns9l.qWz3Rdqnm-DezSpe",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vScLArpPRzD8db8Yn4p95USXU8TA6eHS-aVo8OtYwu7mS2O1XkDsaEgIMGZ5FzNGTUMAwLcqUxRRSHz/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 35
+  },
+  {
+    "id": "workshop-36",
+    "title": "Communicating with students 2.0",
+    "term": "Spring 2023",
+    "description": "Make course announcements more timely, consistent, and useful for students. This 15-minute boot camp covers Brightspace announcement setup, first-message essentials, and settings that help communication land.",
+    "categories": [
+      "Brightspace & LMS"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/3PAEZMkzXd_crusR0fyAZc5ECpffAKg4xBOz4mze9ta7DYsVDvKTugHB0VC3LH3V.jdJIdckibv-OXX_E",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vS9GZZtSvl_vQU3wm1AEeNwsDtZKHQ_3InLnSBa5U18j_pHrLs6lsSE4r3gi-qXajakKwATbET0ZAsV/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 36
+  },
+  {
+    "id": "workshop-37",
+    "title": "Launch your course site",
+    "term": "Spring 2023",
+    "description": "Launch a Brightspace course site that gives students a clear path into the semester. This workshop shows how to create and activate the site, copy useful prior content, and reduce setup friction before classes begin.",
+    "categories": [
+      "Brightspace & LMS"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/v7-Go2tXcU1XVovKGgvedJqhLxzR7BXbjLBO1y8b_Lj-joeh3_cuZjKZhkDUYs-e.AqT7TU_k5317MYys",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vR5nRY-ipQt_zGnJ7WEjL2MsRnqaS98vtRe4U1UUjSQZsmfOSK6g4EIx8DSsGwqqr6ZbauB6E-PoFPT/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 37
+  },
+  {
+    "id": "workshop-38",
+    "title": "Incorporating self-assessment activities into your course",
+    "term": "Fall 2022",
+    "description": "Give students low-stakes ways to check their understanding before it counts. This workshop showcases auto-graded quizzes, self-check problems, and simulations that support practice, confidence, and independent study.",
+    "categories": [
+      "Assessment & Feedback"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/WuIhLc31eggCgmz5gOTim82coZixzUVD8BUQkdOS-oxzFjNCLvE8dIV31nSxD6uCHZE4n3HMUKrm-oRZ.VQKDwrKnWSSMyZtp?continueMode=true",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vS4vd5NtHuu-XvxNwXog3zKZdW_V9KKXFjYWdriDIFc_eKJjBGL9bgzxZTQ0Uz43Wf6TtcBureLyJg5/pub?start=false&loop=false&delayms=60000&slide=id.g17d473ca37a_0_0",
+    "sourceOrder": 38
+  },
+  {
+    "id": "workshop-39",
+    "title": "Communicating with students through Brightspace",
+    "term": "Fall 2022",
+    "description": "Set communication expectations that students can actually follow. This workshop connects research-backed communication practices with Brightspace strategies for keeping students informed and supported.",
+    "categories": [
+      "Brightspace & LMS"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/vpmiHv-wsfv3rNqZykqnV49AJJ0gRONJgfW4FdqIavUrW4YU--OzjwiubGTW6YeR.V7KJsfpwUI5IIwra",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vRWjbU0EF4SJcHrfA1nLuDB_ddRSu_Td-5i2dj2AbkO-K6kNyXNH0Cfgd9WvEZW9YZXSVD1d-Zahi_P/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 39
+  },
+  {
+    "id": "workshop-40",
+    "title": "Creating your own teaching videos",
+    "term": "Fall 2022",
+    "description": "Create teaching videos that fit your course instead of feeling like extra production work. This workshop covers when video is useful, how to plan it, and how Loom can make recording more manageable.",
+    "categories": [
+      "Media & Slides"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/XCal4I7RWepefUcxtyOASmHBD2iYz0O310EDOLx8o9qx4GyYhc9irzc_2ACcWfrQKVv8Bs9lYezU2WE.i_Q8uBlc0jJKcE2x?continueMode=true&_x_zm_rtaid=OwsyKxrxRIC0AT0H0XnoEA.1666188038841.24822c2b08a5dbbbb6de163d61957eb5&_x_zm_rhtaid=157",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSLhJyW3_pDPsuRGC8vkBNn1idaNuzXViGA0hq60fHR2NeJHsr9h1tC5MgOhtUpExpeQsxNKQd39vYB/pub?start=false&loop=false&delayms=60000&slide=id.g126e7bad82c_0_0",
+    "sourceOrder": 40
+  },
+  {
+    "id": "workshop-41",
+    "title": "Using Poll Everywhere",
+    "term": "Fall 2022",
+    "description": "Use Poll Everywhere to make live sessions more responsive, whether students are in person or online. This workshop demonstrates activity types that can spark discussion, check understanding, and serve as quick formative assessment.",
+    "categories": [
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/a3QpYrT_xJfgiPqnMky6TFqEq-x08qdNzAno-x6sAO2M-KJpjG6QT9j2HeJond_-NvOqrDIvOHgXm3cX.fytVu5gKNWVRTqB3?continueMode=true&_x_zm_rtaid=OwsyKxrxRIC0AT0H0XnoEA.1666188038841.24822c2b08a5dbbbb6de163d61957eb5&_x_zm_rhtaid=157",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vTnl9QdYz2bKmVwA_zzKonIwEJ27giDOAFEiwX_OzWciQBy0i2YvKk1DTEuMOo8HD4EkW5xgBitLsDG/pub?start=false&loop=false&delayms=60000&slide=id.g8c1768f691_0_32",
+    "sourceOrder": 41
+  },
+  {
+    "id": "workshop-42",
+    "title": "Discovering Brightspace Updates",
+    "term": "Summer 2022",
+    "description": "Catch up on Brightspace changes that can save time and improve the course-site experience. This workshop highlights new toolbar features, useful updates, and related Zoom breakout-room setup.",
+    "categories": [
+      "Brightspace & LMS",
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/Q2zB_UqM6ApGVA0l3j3l_0XFPzR_wXz4T6sBPIcjy78w0tR3bxQnZuGcQB2bkkgZ.19ITu9Hm91GUkApH",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vR_GLXtJSa5sbd6VNWFEpFQWZuy9IGu4mtqNazGNWB27GWWBOKZ84gu5b5Z0YRvMuo41szI8WVPggTT/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 42
+  },
+  {
+    "id": "workshop-43",
+    "title": "Brightspace Getting Ready to Teach",
+    "term": "Summer 2022",
+    "description": "Build a simple Brightspace course structure that students can navigate from day one. This workshop walks through gradebook setup, Assignments, Quizzes, and Content so the major pieces work together.",
+    "categories": [
+      "Brightspace & LMS"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/QMyyCl5gtzIB1ReHQYZxjqwTtCfayauaJXYsXNNzrl3xPvtYKGTyoM7-XHYDcwRF.Mw8_S9wV5A9qm4vb",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQRO3dPWa6aZgimnLw6uKbF2MPT-TSnymJT876PZoxkpfDFXD276SThUDxxBeHIgoeisFzGZ8_Eeopk/pub?start=false&loop=false&delayms=3000",
+    "sourceOrder": 43
+  },
+  {
+    "id": "workshop-44",
+    "title": "Refreshing your Brightspace course site",
+    "term": "Summer 2022",
+    "description": "Improve the way students encounter content in Brightspace. This workshop introduces layout strategies grounded in learning science and design principles, with examples you can adapt for a clearer course site.",
+    "categories": [
+      "Brightspace & LMS"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/UvGlK12kK1sIQgICuH1bRul1OnKFf_hYTUnvfPV77DZZbG3K0TkP-xTTCNoww4bRHl8zxrjPFWmBqPao.W6GNK06v_ziXpHy2?continueMode=true&_x_zm_rtaid=9gfwutA3RSOhQzejs6GXUg.1658332648004.b7c42bdf138088fca5cc18a57d1a3a9f&_x_zm_rhtaid=930",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQMAe0XrDw7EevNlWVygmejsJXSp1D4rfZXvOa_H1HjcqNKeJJRXlzsroDP-noIEx3dSRGvCXvAtTC5/pub?start=false&loop=false&delayms=60000&slide=id.g13c44b9a621_0_436",
+    "sourceOrder": 44
+  },
+  {
+    "id": "workshop-45",
+    "title": "Creating your own teaching videos at home",
+    "term": "Spring 2022",
+    "description": "Record teaching videos at home with clearer purpose and less friction. This workshop covers where video helps, how to integrate it into a course, and how to use Loom successfully.",
+    "categories": [
+      "Media & Slides"
+    ],
+    "recording": "https://nyu.zoom.us/rec/play/AkoV_zatBZ3TW8RjT8jt6UVr9lI01GJJaPPt_MHAyExamUxtoEMNFBsW_GfBnH9SXjpwx2oFiVJCAN-3.wInxAkLBScEvnAH7?continueMode=true",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vSa6OYic5hhn6iuo3zdj1ZgvOUc29HK1S_eaNqEZJXw6RKp2BC6CnhDphLeQuxhMClPdrZUMM3YeF05/pub?start=false&loop=false&delayms=60000&slide=id.g126e7bad82c_0_0",
+    "sourceOrder": 45
+  },
+  {
+    "id": "workshop-46",
+    "title": "Using Poll Everywhere",
+    "term": "Spring 2022",
+    "description": "Use Poll Everywhere to bring more energy and evidence into class time. This workshop reviews live activity formats, including multiple choice and Q&A, that help students participate and help faculty check understanding quickly.",
+    "categories": [
+      "Classroom Technology"
+    ],
+    "recording": "https://nyu.zoom.us/rec/share/iIjFYaUNCeQ61RR6mGLYnYCa06OB3rRlN7wtBpLtG0VKHCO7x4QFdGqIqdu_FlNl.SxbW-qTjlNe-OryS",
+    "slides": "https://docs.google.com/presentation/d/e/2PACX-1vQLJAJ1RT8avUW6C3fokm-XS3oT62vl3t-VgYEq2TtvuMHHdQPS5mf0CSf316aWk-HuJzKulx915Txq/pub?start=false&loop=false&delayms=60000",
+    "sourceOrder": 46
+  }
+]</script>
+  <script>
+    const logoTest = new Image();
+    logoTest.onload = () => document.getElementById('brandLogoSlot').classList.add('has-logo');
+    logoTest.src = 'stern-logo.png';
+
+    const formatLabels = {
+      full: 'Full-length Workshop',
+      bootcamp: '15-minute Boot Camp'
+    };
+    const bootcampIds = new Set([
+      'workshop-49',
+      'workshop-48',
+      'workshop-3',
+      'workshop-4',
+      'workshop-5',
+      'workshop-7',
+      'workshop-8',
+      'workshop-9',
+      'workshop-11',
+      'workshop-16',
+      'workshop-17',
+      'workshop-22',
+      'workshop-23',
+      'workshop-25',
+      'workshop-26',
+      'workshop-28',
+      'workshop-29',
+      'workshop-30',
+      'workshop-31',
+      'workshop-33',
+      'workshop-36'
+    ]);
+    const workshops = JSON.parse(document.getElementById('workshop-data').textContent)
+      .map(workshop => {
+        return {
+          ...workshop,
+          format: bootcampIds.has(workshop.id) ? 'bootcamp' : 'full'
+        };
+      });
+    const controls = {
+      search: document.getElementById('search'),
+      topicFilter: document.getElementById('topicFilter'),
+      topicToggle: document.getElementById('topicToggle'),
+      topicMenu: document.getElementById('topicMenu'),
+      topicCheckboxes: Array.from(document.querySelectorAll('input[name="topic"]')),
+      sortToggle: document.getElementById('sortToggle'),
+      viewButtons: Array.from(document.querySelectorAll('[data-view]')),
+      reset: document.getElementById('reset')
+    };
+    const results = document.getElementById('results');
+    const count = document.getElementById('count');
+    const empty = document.getElementById('empty');
+    const activeFilters = document.getElementById('activeFilters');
+    const seasonRank = { Winter: 0, Spring: 1, Summer: 2, Fall: 3 };
+    const mobileViewQuery = window.matchMedia('(max-width: 680px)');
+    let sortDirection = 'newest';
+    let currentMode = 'index';
+    let currentTrackId = '';
+    let desktopView = 'card';
+
+    function termValue(term) {
+      const [season, year] = term.split(' ');
+      return (Number(year) * 10) + (seasonRank[season] ?? 0);
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[character]));
+    }
+
+    function matchesSearch(workshop, query) {
+      if (!query) return true;
+      const haystack = `${workshop.title} ${workshop.description} ${workshop.term} ${workshop.categories.join(' ')} ${formatLabels[workshop.format]}`.toLowerCase();
+      return haystack.includes(query);
+    }
+
+    function sorted(items) {
+      return [...items].sort((a, b) => {
+        const termCompare = termValue(a.term) - termValue(b.term);
+        if (sortDirection === 'oldest') return termCompare || a.sourceOrder - b.sourceOrder;
+        return -termCompare || a.sourceOrder - b.sourceOrder;
+      });
+    }
+
+    function getSelectedTopics() {
+      return controls.topicCheckboxes
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+    }
+
+    function setSelectedTopics(topics) {
+      const selected = new Set(topics);
+      controls.topicCheckboxes.forEach(checkbox => {
+        checkbox.checked = selected.has(checkbox.value);
+      });
+      updateTopicSummary();
+    }
+
+    function updateTopicSummary() {
+      const selectedTopics = getSelectedTopics();
+      if (selectedTopics.length === 0) {
+        controls.topicToggle.textContent = 'All topics';
+      } else if (selectedTopics.length === 1) {
+        controls.topicToggle.textContent = selectedTopics[0];
+      } else {
+        controls.topicToggle.textContent = `${selectedTopics.length} topics selected`;
+      }
+    }
+
+    function setTopicMenuOpen(isOpen) {
+      controls.topicFilter.classList.toggle('is-open', isOpen);
+      controls.topicToggle.setAttribute('aria-expanded', String(isOpen));
+      controls.topicMenu.hidden = !isOpen;
+    }
+
+    function renderFilters(query, topics) {
+      const filters = [];
+      if (query) filters.push(`Search: ${query}`);
+      topics.forEach(topic => filters.push(topic));
+      activeFilters.innerHTML = filters.map(filter => `<span class="topic-pill">${escapeHTML(filter)}</span>`).join('');
+    }
+
+    function updateSortToggle() {
+      const isOldest = sortDirection === 'oldest';
+      controls.sortToggle.textContent = isOldest ? 'Oldest First' : 'Newest First';
+      controls.sortToggle.setAttribute('aria-label', isOldest ? 'Sort workshops newest first' : 'Sort workshops oldest first');
+    }
+
+    function updateUrlState(query, selectedTopics) {
+      const parts = [];
+      if (query) parts.push(`q=${encodeURIComponent(query)}`);
+      if (selectedTopics.length) {
+        parts.push(`topics=${selectedTopics.map(topic => encodeURIComponent(topic)).join(',')}`);
+      }
+      if (sortDirection === 'oldest') parts.push('sort=oldest');
+      if (currentMode === 'tracks') parts.push('view=tracks');
+      if (currentMode === 'tracks' && currentTrackId) parts.push(`track=${encodeURIComponent(currentTrackId)}`);
+
+      const nextUrl = `${window.location.pathname}${parts.length ? `?${parts.join('&')}` : ''}${window.location.hash}`;
+      window.history.replaceState(null, '', nextUrl);
+    }
+
+    function applyUrlState() {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('q') || '';
+      const topicParam = params.get('topics') || '';
+      const validTopics = new Set(controls.topicCheckboxes.map(checkbox => checkbox.value));
+      const topics = topicParam
+        .split(',')
+        .map(topic => topic.trim())
+        .filter(topic => validTopics.has(topic));
+
+      controls.search.value = query;
+      sortDirection = params.get('sort') === 'oldest' ? 'oldest' : 'newest';
+      setSelectedTopics(topics);
+      updateSortToggle();
+    }
+
+    function setView(view, rememberDesktopView = true) {
+      if (rememberDesktopView && !mobileViewQuery.matches) {
+        desktopView = view;
+      }
+
+      const activeView = mobileViewQuery.matches ? 'list' : view;
+      const isListView = activeView === 'list';
+      results.classList.toggle('list-view', isListView);
+      controls.viewButtons.forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.view === activeView));
+      });
+      refreshDescriptionToggles();
+    }
+
+    function syncResponsiveView() {
+      setView(desktopView, false);
+    }
+
+    function toggleDescription(button) {
+      const workshop = button.closest('.workshop');
+      const preview = workshop.querySelector('.description-preview');
+      const fullDescription = workshop.querySelector('.description-full-text');
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      workshop.classList.toggle('is-expanded', !isExpanded);
+      preview.hidden = !isExpanded;
+      fullDescription.hidden = isExpanded;
+      button.setAttribute('aria-expanded', String(!isExpanded));
+      button.setAttribute('aria-label', `${isExpanded ? 'Show full description for' : 'Collapse description for'} ${workshop.dataset.workshopTitle}`);
+      button.textContent = isExpanded ? ' more' : ' less';
+    }
+
+    function refreshDescriptionToggles() {
+      const isListView = results.classList.contains('list-view');
+      results.querySelectorAll('.description-toggle').forEach(button => {
+        const workshop = button.closest('.workshop');
+        const preview = workshop.querySelector('.description-preview');
+        const fullDescription = workshop.querySelector('.description-full-text');
+        if (!isListView || !preview || !fullDescription) {
+          button.hidden = true;
+          workshop.classList.remove('is-expanded');
+          button.setAttribute('aria-expanded', 'false');
+          button.setAttribute('aria-label', `Show full description for ${workshop.dataset.workshopTitle}`);
+          button.textContent = ' more';
+          if (preview) preview.hidden = true;
+          if (fullDescription) fullDescription.hidden = false;
+          return;
+        }
+
+        workshop.classList.remove('is-expanded');
+        preview.hidden = false;
+        fullDescription.hidden = true;
+        button.hidden = false;
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', `Show full description for ${workshop.dataset.workshopTitle}`);
+        button.textContent = ' more';
+      });
+    }
+
+    function descriptionPreview(description) {
+      const limit = 200;
+      const minimumHiddenCharacters = 25;
+      if (description.length <= limit + minimumHiddenCharacters) {
+        return { text: description, isTruncated: false };
+      }
+
+      const cutoff = description.lastIndexOf(' ', limit);
+      const preview = description.slice(0, cutoff > 120 ? cutoff : limit).replace(/[.,;:!?-]+$/, '');
+      return { text: `${preview}...`, isTruncated: true };
+    }
+
+    function workshopCard(workshop) {
+      const formatTag = `<span class="tag format-tag">${escapeHTML(formatLabels[workshop.format])}</span>`;
+      const subjectTags = workshop.categories.map(category => `<span class="tag">${escapeHTML(category)}</span>`).join('');
+      const tags = `${formatTag}${subjectTags}`;
+      const resourceContext = `${workshop.title}, ${workshop.term}`;
+      const descriptionId = `${workshop.id}-description`;
+      const preview = descriptionPreview(workshop.description);
+      const descriptionMarkup = preview.isTruncated
+        ? `<span class="description-preview" hidden>${escapeHTML(preview.text)}</span><span class="description-full-text">${escapeHTML(workshop.description)}</span><button class="description-toggle" type="button" aria-expanded="true" aria-controls="${escapeHTML(descriptionId)}" aria-label="Collapse description for ${escapeHTML(resourceContext)}" hidden> less</button>`
+        : `<span class="description-full-text">${escapeHTML(workshop.description)}</span>`;
+      const recording = workshop.recording
+        ? `<a href="${escapeHTML(workshop.recording)}" aria-label="Recording: ${escapeHTML(resourceContext)}">Recording</a>`
+        : '';
+      const slides = workshop.slides
+        ? `<a href="${escapeHTML(workshop.slides)}" aria-label="Slides: ${escapeHTML(resourceContext)}">Slides</a>`
+        : '';
+      return `
+        <article class="workshop" data-workshop-title="${escapeHTML(resourceContext)}">
+          <div class="content">
+            <div class="term">${escapeHTML(workshop.term)}</div>
+            <h2>${escapeHTML(workshop.title)}</h2>
+            <p class="description" id="${escapeHTML(descriptionId)}">${descriptionMarkup}</p>
+            <div class="tags">${tags}</div>
+          </div>
+          <div class="actions">${recording}${slides}</div>
+        </article>
+      `;
+    }
+
+    function update() {
+      const rawQuery = controls.search.value.trim();
+      const query = rawQuery.toLowerCase();
+      const selectedTopics = getSelectedTopics();
+      const filtered = workshops.filter(workshop =>
+        matchesSearch(workshop, query) &&
+        (!selectedTopics.length || selectedTopics.some(topic => workshop.categories.includes(topic)))
+      );
+
+      const visible = sorted(filtered);
+      results.innerHTML = visible.map(workshopCard).join('');
+      count.textContent = visible.length;
+      empty.style.display = visible.length ? 'none' : 'block';
+      renderFilters(rawQuery, selectedTopics);
+      updateTopicSummary();
+      updateSortToggle();
+      updateUrlState(rawQuery, selectedTopics);
+      refreshDescriptionToggles();
+    }
+
+    controls.search.addEventListener('input', update);
+    controls.topicToggle.addEventListener('click', () => {
+      setTopicMenuOpen(controls.topicMenu.hidden);
+    });
+    controls.topicCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', update);
+    });
+    controls.sortToggle.addEventListener('click', () => {
+      sortDirection = sortDirection === 'oldest' ? 'newest' : 'oldest';
+      update();
+    });
+    controls.viewButtons.forEach(button => {
+      button.addEventListener('click', () => setView(button.dataset.view));
+    });
+    results.addEventListener('click', event => {
+      const button = event.target.closest('.description-toggle');
+      if (button) toggleDescription(button);
+    });
+    document.addEventListener('click', event => {
+      if (!controls.topicFilter.contains(event.target)) {
+        setTopicMenuOpen(false);
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        setTopicMenuOpen(false);
+        controls.topicToggle.focus();
+      }
+    });
+    window.addEventListener('resize', refreshDescriptionToggles);
+    if (typeof mobileViewQuery.addEventListener === 'function') {
+      mobileViewQuery.addEventListener('change', syncResponsiveView);
+    } else {
+      mobileViewQuery.addListener(syncResponsiveView);
+    }
+    controls.reset.addEventListener('click', () => {
+      controls.search.value = '';
+      sortDirection = 'newest';
+      setSelectedTopics([]);
+      setTopicMenuOpen(false);
+      update();
+      controls.search.focus();
+    });
+
+    syncResponsiveView();
+    applyUrlState();
+    update();
+
+    /* ---------- Learning Tracks ---------- */
+
+    const learningTracks = [
+      {
+        id: 'setup',
+        name: 'Start of Semester Setup',
+        blurb: 'Get a course ready before day one: a working site, a clear syllabus, and a first week students can follow.',
+        steps: [
+          { id: 'workshop-27', level: 'Foundation', note: 'Start with the document students read first.' },
+          { id: 'workshop-47', level: 'Core', note: 'With the syllabus settled, build the week-one plan around it.' },
+          { id: 'workshop-36', level: 'Core', note: 'Set up the channel you will use for the rest of the term.' },
+          { id: 'workshop-39', level: 'Advanced', note: 'Turn one-off announcements into expectations students can rely on.' }
+        ]
+      },
+      {
+        id: 'brightspace',
+        name: 'Brightspace Essentials',
+        blurb: 'Build a course site from activation through grading, in the order the work actually happens.',
+        steps: [
+          { id: 'workshop-26', level: 'Foundation', note: 'The fastest path to a live site, if the semester starts Monday.' },
+          { id: 'workshop-37', level: 'Foundation', note: 'The unhurried version: build the site deliberately instead of reusing one.' },
+          { id: 'workshop-43', level: 'Core', note: 'Wire the pieces together so Content, Assignments, and the gradebook agree.' },
+          { id: 'workshop-35', level: 'Core', note: 'Once that structure exists, make grading run through it.' },
+          { id: 'workshop-44', level: 'Advanced', note: 'Last, revisit layout with learning science in mind.' }
+        ]
+      },
+      {
+        id: 'ai',
+        name: 'Teaching with AI',
+        blurb: 'Start with what the tools can already do, then work toward course-specific assistants of your own.',
+        steps: [
+          { id: 'workshop-13', level: 'Foundation', note: 'Get your bearings before committing to any one tool.' },
+          { id: 'workshop-8', level: 'Foundation', note: 'A first student-facing use, with the guardrails built in.' },
+          { id: 'workshop-9', level: 'Core', note: 'Move from using someone else’s assistant to shaping your own.' },
+          { id: 'workshop-2', level: 'Core', note: 'Apply the same skills to material you produce every week.' },
+          { id: 'workshop-1', level: 'Advanced', note: 'The end of the path: build something that did not exist before.' }
+        ]
+      },
+      {
+        id: 'assessment',
+        name: 'Assessment & Academic Integrity',
+        blurb: 'Decide what AI is allowed to do in your course, then redesign exams and rubrics around that decision.',
+        steps: [
+          { id: 'workshop-49', level: 'Foundation', note: 'Settle the policy question first — everything downstream depends on it.' },
+          { id: 'workshop-24', level: 'Core', note: 'Redesign the assessments that policy just exposed.' },
+          { id: 'workshop-19', level: 'Core', note: 'Make the new expectations legible to students.' },
+          { id: 'workshop-29', level: 'Core', note: 'The delivery mechanics, once the design is settled.' },
+          { id: 'workshop-38', level: 'Advanced', note: 'Add practice so the graded exam is not the first real check.' }
+        ]
+      },
+      {
+        id: 'feedback',
+        name: 'Feedback That Works',
+        blurb: 'Collect feedback you can act on, and build students’ ability to give it to each other.',
+        steps: [
+          { id: 'workshop-11', level: 'Foundation', note: 'Begin with feedback flowing toward you.' },
+          { id: 'workshop-5', level: 'Foundation', note: 'Add checks that tell you the same thing, continuously.' },
+          { id: 'workshop-30', level: 'Core', note: 'Change direction: teach students the skill before you assign it.' },
+          { id: 'workshop-14', level: 'Advanced', note: 'Only then run peer review at full scale.' }
+        ]
+      },
+      {
+        id: 'design',
+        name: 'Visual Design & Presentations',
+        blurb: 'Make what students look at easier to follow — on slides, at the podium, and on video.',
+        steps: [
+          { id: 'workshop-15', level: 'Foundation', note: 'Start with principles you can apply to decks you already have.' },
+          { id: 'workshop-12', level: 'Core', note: 'Then the software skills to execute them.' },
+          { id: 'workshop-2', level: 'Core', note: 'A faster route to the same quality bar.' },
+          { id: 'workshop-25', level: 'Core', note: 'Design is half of it — now deliver the thing in a real room.' },
+          { id: 'workshop-10', level: 'Advanced', note: 'The most production-heavy format, saved for last.' }
+        ]
+      },
+      {
+        id: 'participation',
+        name: 'Participation & Motivation',
+        blurb: 'Work on why students engage before working on how you call on them.',
+        steps: [
+          { id: 'workshop-22', level: 'Foundation', note: 'Diagnose why engagement is low before changing tactics.' },
+          { id: 'workshop-7', level: 'Foundation', note: 'The highest-leverage single fix: preparation before class.' },
+          { id: 'workshop-6', level: 'Core', note: 'Structures that give prepared students something worth doing.' },
+          { id: 'workshop-48', level: 'Core', note: 'Address what still gets in the way once the structures are in place.' },
+          { id: 'workshop-16', level: 'Advanced', note: 'A tool for the students the earlier moves did not reach.' }
+        ]
+      },
+      {
+        id: 'groupwork',
+        name: 'Group Work & Discussion',
+        blurb: 'Give students a reason to talk to each other, then structure the work so it pays off.',
+        steps: [
+          { id: 'workshop-33', level: 'Foundation', note: 'The lowest-stakes place to practice structured student talk.' },
+          { id: 'workshop-20', level: 'Core', note: 'Move that structure into live class time.' },
+          { id: 'workshop-14', level: 'Core', note: 'Give the groups a task with real stakes attached.' },
+          { id: 'workshop-3', level: 'Advanced', note: 'Hardest to get right: collaboration with an outside voice in the room.' }
+        ]
+      },
+      {
+        id: 'tech',
+        name: 'Classroom Technology Toolkit',
+        blurb: 'The tools that carry a live session — polling, Zoom, demos, and what is coming next.',
+        steps: [
+          { id: 'workshop-41', level: 'Foundation', note: 'One tool, immediately useful in any live session.' },
+          { id: 'workshop-17', level: 'Foundation', note: 'Then the platform already in your week, used better.' },
+          { id: 'workshop-42', level: 'Core', note: 'Catch up on what changed while you were busy teaching.' },
+          { id: 'workshop-32', level: 'Core', note: 'Harder: technology you run live, in front of students.' },
+          { id: 'workshop-18', level: 'Advanced', note: 'Finally, decide what is worth adopting next.' }
+        ]
+      },
+      {
+        id: 'google',
+        name: 'Google Workspace for Teaching',
+        blurb: 'A short path through the Google tools most often used for course files and quick assessment.',
+        steps: [
+          { id: 'workshop-28', level: 'Foundation', note: 'Get the files in order first.' },
+          { id: 'workshop-31', level: 'Foundation', note: 'Then the format students will actually work in.' },
+          { id: 'workshop-23', level: 'Core', note: 'Last, use the same suite for quick assessment.' }
+        ]
+      }
+    ];
+
+    const workshopById = new Map(workshops.map(workshop => [workshop.id, workshop]));
+    const trackById = new Map(learningTracks.map(track => [track.id, track]));
+    const modeTabs = Array.from(document.querySelectorAll('.mode-tab'));
+    const panels = {
+      index: document.getElementById('panelIndex'),
+      tracks: document.getElementById('panelTracks')
+    };
+    const tracksIntro = document.getElementById('tracksIntro');
+    const trackGrid = document.getElementById('trackGrid');
+    const trackOverview = document.getElementById('trackOverview');
+    const trackDetail = document.getElementById('trackDetail');
+    const trackDetailHead = document.getElementById('trackDetailHead');
+    const trackSteps = document.getElementById('trackSteps');
+    const trackBack = document.getElementById('trackBack');
+
+    function resourceLinks(workshop, extraClass = '') {
+      const resourceContext = `${workshop.title}, ${workshop.term}`;
+      const links = [];
+      if (workshop.recording) {
+        links.push(`<a href="${escapeHTML(workshop.recording)}" aria-label="Recording: ${escapeHTML(resourceContext)}">Recording</a>`);
+      }
+      if (workshop.slides) {
+        links.push(`<a href="${escapeHTML(workshop.slides)}" aria-label="Slides: ${escapeHTML(resourceContext)}">Slides</a>`);
+      }
+      if (!links.length) return '';
+      const single = links.length === 1 ? ' single' : '';
+      return `<div class="actions${single}${extraClass}">${links.join('')}</div>`;
+    }
+
+    function trackCard(track) {
+      const preview = track.steps.map((step, index) => {
+        const workshop = workshopById.get(step.id);
+        if (!workshop) return '';
+        return `<li><span>${index + 1}</span><span>${escapeHTML(workshop.title)} <span class="preview-term">${escapeHTML(workshop.term)}</span></span></li>`;
+      }).join('');
+      return `
+        <button class="track-card" type="button" data-track="${escapeHTML(track.id)}">
+          <span class="track-kicker">Learning Track</span>
+          <h2>${escapeHTML(track.name)}</h2>
+          <p class="track-blurb">${escapeHTML(track.blurb)}</p>
+          <ol class="track-preview">${preview}</ol>
+          <span class="track-card-foot">
+            <span>View track</span>
+            <span class="track-count">${track.steps.length} workshops</span>
+          </span>
+        </button>
+      `;
+    }
+
+    function trackStep(step, index) {
+      const workshop = workshopById.get(step.id);
+      if (!workshop) return '';
+      const formatTag = `<span class="tag format-tag">${escapeHTML(formatLabels[workshop.format])}</span>`;
+      const subjectTags = workshop.categories.map(category => `<span class="tag">${escapeHTML(category)}</span>`).join('');
+      return `
+        <li class="track-step">
+          <div class="step-marker">
+            <span class="step-number" aria-hidden="true">${index + 1}</span>
+            <span class="step-level" data-level="${escapeHTML(step.level)}">${escapeHTML(step.level)}</span>
+          </div>
+          <div class="step-body">
+            <div class="term">${escapeHTML(workshop.term)}</div>
+            <h3><span class="visually-hidden">Step ${index + 1}: </span>${escapeHTML(workshop.title)}</h3>
+            <p class="step-note">${escapeHTML(step.note)}</p>
+            <p class="step-description">${escapeHTML(workshop.description)}</p>
+            <div class="tags">${formatTag}${subjectTags}</div>
+          </div>
+          ${resourceLinks(workshop)}
+        </li>
+      `;
+    }
+
+    function renderTrackOverview() {
+      trackGrid.innerHTML = learningTracks.map(trackCard).join('');
+    }
+
+    function renderTrackDetail(track) {
+      const levels = new Set(track.steps.map(step => step.level));
+      const meta = ['Foundation', 'Core', 'Advanced']
+        .filter(level => levels.has(level))
+        .map(level => `<span class="topic-pill">${level}</span>`)
+        .join('');
+      trackDetailHead.innerHTML = `
+        <h2>${escapeHTML(track.name)}</h2>
+        <p>${escapeHTML(track.blurb)}</p>
+        <div class="track-meta"><span class="topic-pill">${track.steps.length} workshops</span>${meta}</div>
+      `;
+      trackSteps.innerHTML = track.steps.map(trackStep).join('');
+    }
+
+    function setTrack(trackId, { focus = false } = {}) {
+      const track = trackId ? trackById.get(trackId) : null;
+      currentTrackId = track ? track.id : '';
+      tracksIntro.hidden = Boolean(track);
+      if (track) {
+        renderTrackDetail(track);
+        trackOverview.hidden = true;
+        trackDetail.hidden = false;
+        if (focus) trackBack.focus();
+      } else {
+        trackOverview.hidden = false;
+        trackDetail.hidden = true;
+      }
+      syncUrl();
+    }
+
+    function setMode(mode, { focus = false } = {}) {
+      currentMode = mode === 'tracks' ? 'tracks' : 'index';
+      modeTabs.forEach(tab => {
+        const isActive = tab.dataset.mode === currentMode;
+        tab.setAttribute('aria-selected', String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+        if (isActive && focus) tab.focus();
+      });
+      panels.index.hidden = currentMode !== 'index';
+      panels.tracks.hidden = currentMode !== 'tracks';
+      syncUrl();
+    }
+
+    trackGrid.addEventListener('click', event => {
+      const card = event.target.closest('.track-card');
+      if (card) setTrack(card.dataset.track, { focus: true });
+    });
+
+    trackBack.addEventListener('click', () => {
+      const previousTrackId = currentTrackId;
+      setTrack('');
+      const card = trackGrid.querySelector(`[data-track="${previousTrackId}"]`);
+      if (card) card.focus();
+    });
+
+    modeTabs.forEach(tab => {
+      tab.addEventListener('click', () => setMode(tab.dataset.mode));
+      tab.addEventListener('keydown', event => {
+        if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+        event.preventDefault();
+        const index = modeTabs.indexOf(tab);
+        const next = modeTabs[(index + (event.key === 'ArrowRight' ? 1 : modeTabs.length - 1)) % modeTabs.length];
+        setMode(next.dataset.mode, { focus: true });
+      });
+    });
+
+    renderTrackOverview();
+
+    const initialParams = new URLSearchParams(window.location.search);
+    const initialTrack = initialParams.get('track') || '';
+    setMode(initialParams.get('view') === 'tracks' ? 'tracks' : 'index');
+    setTrack(trackById.has(initialTrack) ? initialTrack : '');
+
+    function syncUrl() {
+      updateUrlState(controls.search.value.trim(), getSelectedTopics());
+    }
+
+    document.getElementById('backToArchive').addEventListener('click', () => {
+      setMode('index', { focus: true });
+    });
+  </script>
+</body>
+</html>
