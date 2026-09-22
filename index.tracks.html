@@ -1971,8 +1971,11 @@
     const seasonRank = { Winter: 0, Spring: 1, Summer: 2, Fall: 3 };
     const mobileViewQuery = window.matchMedia('(max-width: 680px)');
     let sortDirection = 'newest';
-    let currentMode = 'index';
-    let currentTrackId = '';
+    // Seeded here rather than in the tracks init below: update() runs first
+    // and rewrites the URL, which would strip view/track before they were read.
+    const initialParams = new URLSearchParams(window.location.search);
+    let currentMode = (initialParams.get('view') === 'tracks' || initialParams.get('track')) ? 'tracks' : 'index';
+    let currentTrackId = initialParams.get('track') || '';
     let desktopView = 'card';
 
     function termValue(term) {
@@ -2509,10 +2512,8 @@
 
     renderTrackOverview();
 
-    const initialParams = new URLSearchParams(window.location.search);
-    const initialTrack = initialParams.get('track') || '';
-    setMode(initialParams.get('view') === 'tracks' ? 'tracks' : 'index');
-    setTrack(trackById.has(initialTrack) ? initialTrack : '');
+    setMode(currentMode);
+    setTrack(trackById.has(currentTrackId) ? currentTrackId : '');
 
     function syncUrl() {
       updateUrlState(controls.search.value.trim(), getSelectedTopics());

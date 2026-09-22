@@ -143,10 +143,23 @@ Classroom Technology Toolkit (5), Google Workspace for Teaching (3).
 
 Track state composes with the existing query parameters:
 
-- `?view=tracks` — open the Learning Tracks tab
+- `?view=tracks` — open the Learning Tracks tab on the overview grid
 - `?view=tracks&track=ai` — deep-link to one track's detail view
+- `?track=ai` — `view=tracks` is implied, and the URL is normalized to include it
 
-Unrecognized `track` slugs fall back to the overview grid.
+Unrecognized `track` slugs fall back to the overview grid, and the bad slug is
+dropped from the URL. `q`, `topics`, and `sort` are preserved across both views
+even though they only affect the archive.
+
+**Ordering trap.** `currentMode` and `currentTrackId` are seeded from
+`window.location.search` at declaration, next to `sortDirection` — deliberately
+*not* in the tracks init block at the end of the script. The pre-existing
+`update()` call runs before that block and calls `updateUrlState()`, which
+rewrites the URL via `history.replaceState()`. Any track state read after that
+point has already been stripped from the URL. (`q` and `topics` escape this
+because `applyUrlState()` loads them into the form controls first, so
+`updateUrlState()` re-emits them.) Anything new that reads query parameters must
+be seeded before `update()` runs.
 
 ## Verification Status
 
@@ -165,7 +178,9 @@ Unrecognized `track` slugs fall back to the overview grid.
 - Every `steps[].id` resolves against the workshop dataset
 - Recording and slide links render for every step
 - Tab switching, track detail, and back navigation work with no console errors
-- `?view=tracks&track=<id>` deep links restore the right view
+- Deep links restore the right view: `?view=tracks`, `?view=tracks&track=<id>`,
+  a bare `?track=<id>`, an unrecognized slug, and archive-only params were each
+  checked against a fresh page load
 - The archive view's search, sort, and reset are unaffected
 
 ## Known External Dependencies
