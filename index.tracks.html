@@ -838,7 +838,7 @@
 
     .tracks-intro {
       margin: 0 auto;
-      padding-block: 30px 6px;
+      padding-block: 22px 4px;
     }
 
     .tracks-intro p {
@@ -850,98 +850,160 @@
 
     .track-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-      padding-block: 22px 60px;
+      gap: 14px;
+      padding-block: 16px 48px;
     }
 
     .track-card {
-      display: flex;
-      flex-direction: column;
+      position: relative;
       border: 1px solid var(--line);
-      border-top: 5px solid var(--nyu-violet);
+      border-left: 5px solid var(--nyu-violet);
       background: #fff;
-      padding: 20px 18px 0;
-      text-align: left;
-      cursor: pointer;
-      font: inherit;
-      color: inherit;
+      padding: 18px 24px 20px;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
     }
 
-    .track-card:hover {
+    .track-card:hover,
+    .track-card:focus-within {
       border-color: var(--nyu-violet);
       box-shadow: 0 10px 26px rgb(0 0 0 / 0.1);
     }
 
-    .track-kicker {
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 8px;
+    .track-card:focus-within {
+      outline: 3px solid var(--kingfisher);
+      outline-offset: 3px;
+    }
+
+    .track-card-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 28px;
     }
 
     .track-card h2 {
-      margin: 0 0 8px;
-      font-size: 21px;
+      margin: 0 0 5px;
+      font-size: clamp(22px, 2.5vw, 28px);
       line-height: 1.18;
       color: var(--ink);
     }
 
     .track-blurb {
-      margin: 0 0 14px;
+      margin: 0;
       color: var(--emperor);
       font-size: 15px;
     }
 
-    .track-preview {
-      margin: 0 0 16px;
-      padding: 0;
-      list-style: none;
+    .track-card-action {
       display: grid;
-      gap: 5px;
-      border-top: 1px solid var(--line);
-      padding-top: 12px;
+      justify-items: end;
+      gap: 4px;
+      flex: 0 0 auto;
+      padding-top: 5px;
     }
 
-    .track-preview li {
-      display: grid;
-      grid-template-columns: 18px minmax(0, 1fr);
-      gap: 8px;
-      color: #333;
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .track-preview li > span:first-child {
-      color: var(--nyu-violet);
-      font-weight: 800;
-    }
-
-    .track-card-foot {
-      margin-top: auto;
-      margin-inline: -18px;
-      border-top: 1px solid var(--line);
-      padding: 13px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      color: var(--kingfisher);
+    .track-count {
+      color: var(--emperor);
       font-size: 12px;
+      font-weight: 700;
+    }
+
+    .track-open {
+      border: 0;
+      background: transparent;
+      padding: 0;
+      color: var(--kingfisher);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
       font-weight: 800;
       text-transform: uppercase;
     }
 
-    .track-card:hover .track-card-foot {
+    .track-open::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .track-card:hover .track-open,
+    .track-open:focus-visible {
       color: var(--stern-violet);
     }
 
-    .track-card-foot .track-count {
-      color: var(--emperor);
+    .track-preview {
+      margin: 15px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .track-preview li {
+      position: relative;
+      display: grid;
+      align-content: start;
+      justify-items: start;
+      min-width: 0;
+      gap: 2px;
+    }
+
+    .track-preview li:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 15px;
+      left: 32px;
+      right: -14px;
+      height: 2px;
+      background: #b99bcc;
+    }
+
+    .preview-node {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 5px;
+      border-radius: 50%;
+      background: var(--nyu-violet);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .preview-level {
+      color: var(--nyu-violet);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .preview-level[data-level="Foundation"] {
+      color: var(--kingfisher);
+    }
+
+    .preview-level[data-level="Advanced"] {
+      color: var(--gold);
+    }
+
+    .preview-title {
+      color: var(--ink);
+      font-size: 13px;
       font-weight: 700;
-      text-transform: none;
-      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .preview-term {
+      color: var(--emperor);
+      font-size: 11px;
+      font-weight: 500;
     }
 
     /* ---------- Learning Tracks: detail ---------- */
@@ -1123,10 +1185,6 @@
     }
 
     @media (max-width: 980px) {
-      .track-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .track-step {
         grid-template-columns: 104px minmax(0, 1fr);
       }
@@ -1135,6 +1193,67 @@
         grid-column: 1 / -1;
         border-left: 0;
         border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .track-card {
+        padding: 16px 16px 18px;
+      }
+
+      .track-card-head {
+        display: grid;
+        gap: 8px;
+      }
+
+      .track-card-action {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-top: 0;
+      }
+
+      .track-preview {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 14px;
+        padding-top: 14px;
+      }
+
+      .track-preview li {
+        grid-template-columns: 32px minmax(0, 1fr) auto;
+        column-gap: 10px;
+      }
+
+      .track-preview li:not(:last-child)::after {
+        top: 32px;
+        bottom: -10px;
+        left: 15px;
+        right: auto;
+        width: 2px;
+        height: auto;
+      }
+
+      .preview-node {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        margin-bottom: 0;
+      }
+
+      .preview-level {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .preview-term {
+        grid-column: 3;
+        grid-row: 1;
+      }
+
+      .preview-title {
+        grid-column: 2 / -1;
+        grid-row: 2;
       }
     }
 
@@ -1150,10 +1269,6 @@
 
       .mode-tab-badge {
         top: 8px;
-      }
-
-      .track-grid {
-        grid-template-columns: 1fr;
       }
 
       .track-step {
@@ -1187,11 +1302,6 @@
       color: var(--stern-violet);
     }
 
-    .preview-term {
-      color: var(--emperor);
-      font-weight: 500;
-      white-space: nowrap;
-    }
   </style>
 </head>
 <body>
@@ -1326,7 +1436,7 @@
     "id": "workshop-48",
     "title": "100% in-class participation",
     "term": "Fall 2026",
-    "description": "Learn strategies to address three core barriers to engagement in your classroom: distractions, low engagement, and poor-quality contributions.",
+    "description": "Students can be present without really participating. This session looks at three common obstacles: distractions, low engagement, and contributions that do not move discussion forward. Faculty consider ways to respond to each and can use the examples to diagnose what is happening in their own classes.",
     "categories": [
       "Course Design",
       "Student Engagement"
@@ -1353,7 +1463,7 @@
     "id": "workshop-1",
     "title": "Easy apps for your course",
     "term": "Spring 2026",
-    "description": "Turn a course need into a lightweight mini-app students can use before, during, or after class. This session shows how to spot good use cases and build a simple tool that supports practice, preparation, or follow-up.",
+    "description": "A small app can give students a way to explore a concept or practice a decision before, during, or after class. In this session, faculty consider which course needs are small enough for an app, then use Gemini to build and share an interactive example in Brightspace.",
     "categories": [
       "Classroom Technology"
     ],
@@ -1365,7 +1475,7 @@
     "id": "workshop-2",
     "title": "A.I.-Powered Slides",
     "term": "Spring 2026",
-    "description": "Move beyond generic slide decks by using AI to generate stronger visuals and faster first drafts. You will see practical Gemini workflows for producing polished teaching assets and assembling them into slides.",
+    "description": "If you make slides regularly, AI can help you get past a blank page, create visuals, or try out an early layout. This session demonstrates Gemini workflows for generating those materials and bringing them into a presentation. You still decide what to keep, revise, or leave out before teaching from it.",
     "categories": [
       "AI & Automation",
       "Media & Slides"
@@ -1417,7 +1527,7 @@
     "id": "workshop-6",
     "title": "Supercharge class participation with active learning",
     "term": "Fall 2025",
-    "description": "Make participation easier to start and more productive once it begins. This workshop packages five classroom-ready strategies so students arrive prepared, stay attentive, and do deeper thinking in the room.",
+    "description": "Faculty look at five active-learning strategies they can bring into an ordinary class meeting. The emphasis is on giving students something concrete to do with their preparation, so participation involves more than waiting for a few people to answer a question.",
     "categories": [
       "Student Engagement"
     ],
@@ -1429,7 +1539,7 @@
     "id": "workshop-7",
     "title": "Motivate students to read",
     "term": "Fall 2025",
-    "description": "Help students come to class ready to use the readings, not just skim them. This 15-minute boot camp shares low-effort, high-impact ways to incentivize reading, build accountability, and keep expectations clear.",
+    "description": "If you want to spend class time discussing or applying the reading, students need a reason to do it beforehand. This 15-minute boot camp covers ways to make expectations clearer and add accountability without building an entirely new assignment for every reading.",
     "categories": [
       "Student Engagement"
     ],
@@ -1441,7 +1551,7 @@
     "id": "workshop-8",
     "title": "Easy chatbots for your course",
     "term": "Fall 2025",
-    "description": "Give students a course-bounded AI assistant without opening the door to generic answers. This 15-minute boot camp shows how NotebookLM can help students locate information, clarify concepts, self-quiz, and practice responsible AI use.",
+    "description": "NotebookLM can answer questions using the course materials you choose. In this 15-minute session, you will see how to create and share a course-specific notebook that students can use to find information, clarify concepts, and quiz themselves. The session also considers why the choice of source material matters.",
     "categories": [
       "AI & Automation",
       "Course Design"
@@ -1454,7 +1564,7 @@
     "id": "workshop-9",
     "title": "Anatomy of a GPT",
     "term": "Spring 2025",
-    "description": "Demystify custom GPTs and leave with a clearer sense of when one is worth building. This 15-minute boot camp walks through examples and the Lab's creation process so you can imagine targeted assistants for your own course.",
+    "description": "What goes into a custom GPT, and when is one worth making for a course? In this 15-minute boot camp, the Lab shares examples and walks through its creation process. You can use those examples to think through a specific job an assistant might do for your students or for you.",
     "categories": [
       "AI & Automation"
     ],
@@ -1466,7 +1576,7 @@
     "id": "workshop-10",
     "title": "Recording teaching videos",
     "term": "Spring 2025",
-    "description": "Make at-home teaching videos cleaner, clearer, and easier to produce. This in-person workshop covers practical media-production choices and a NYU Stream self-recording workflow you can reuse.",
+    "description": "If you are making teaching videos at home, it helps to plan both the lesson and the recording. This in-person session covers short, focused video lessons, camera and microphone setup, and a self-recording workflow in NYU Stream. Faculty also get a chance to try the process.",
     "categories": [
       "Media & Slides"
     ],
@@ -1490,7 +1600,7 @@
     "id": "workshop-12",
     "title": "Level up your PowerPoint skills",
     "term": "Spring 2025",
-    "description": "Build PowerPoint slides that look more polished and support the way students actually learn. This workshop focuses on practical tools and design moves faculty can use to improve clarity, visual appeal, and flow.",
+    "description": "You do not have to format every PowerPoint slide from scratch. This 15-minute boot camp demonstrates how to use themes, slide masters, layouts, SmartArt, and alignment tools to build a deck that stays consistent and is easier to revise. The same workflow also supports accessibility.",
     "categories": [
       "Media & Slides"
     ],
@@ -1502,7 +1612,7 @@
     "id": "workshop-13",
     "title": "The landscape of AI",
     "term": "Spring 2025",
-    "description": "Use generative AI as a practical productivity partner for teaching. This workshop highlights ways faculty can draft, adapt, and improve instructional materials while keeping the learning goals in view.",
+    "description": "If you are curious about generative AI but unsure where it might help, this session looks at ways faculty can use it when preparing to teach. The examples focus on drafting and revising course materials. You can weigh them against the learning goals of your own course.",
     "categories": [
       "AI & Automation"
     ],
@@ -1527,7 +1637,7 @@
     "id": "workshop-15",
     "title": "Improving your slide decks",
     "term": "Fall 2024",
-    "description": "Turn existing slide decks into clearer teaching tools. This workshop reviews design principles and shows how to apply them so slides are easier to follow, better paced, and more visually effective.",
+    "description": "Faculty look at how slide design affects what students notice and remember. Before-and-after examples show how to direct attention, reduce unnecessary text, and reveal information at the right moment. You can apply the ideas to decks you already teach with.",
     "categories": [
       "Media & Slides"
     ],
@@ -1539,7 +1649,7 @@
     "id": "workshop-16",
     "title": "Live in-class polling",
     "term": "Spring 2024",
-    "description": "Bring more students into the conversation with quick live polling. This 15-minute boot camp demonstrates three Poll Everywhere approaches for checking understanding, prompting discussion, and making class time more interactive.",
+    "description": "Poll Everywhere gives students a way to respond even when they would not raise a hand. In this short boot camp, faculty see three kinds of live poll that can check understanding, give students a starting point for discussion, and bring more voices into the room.",
     "categories": [
       "Classroom Technology"
     ],
@@ -1613,7 +1723,7 @@
     "id": "workshop-22",
     "title": "Boost student motivation",
     "term": "Fall 2023",
-    "description": "Strengthen student motivation with small course-design choices that make learning feel more achievable and worthwhile. This 15-minute boot camp reviews what drives motivation and practical ways to build it into your teaching.",
+    "description": "When students seem disengaged, the issue may be more than whether they speak in class. This 15-minute boot camp looks at factors that affect motivation and at small choices you can make in a course to help students see a reason to do the work and believe they can do it.",
     "categories": [
       "Student Engagement"
     ],
@@ -1650,7 +1760,7 @@
     "id": "workshop-25",
     "title": "Make your podium work for you",
     "term": "Fall 2023",
-    "description": "Make the classroom podium an ally instead of a distraction. This 15-minute boot camp shares presentation strategies, student follow-along options, and a practical asynchronous resource for smoother in-room teaching.",
+    "description": "The classroom podium adds a few practical decisions to a well-designed deck. In this 15-minute boot camp, faculty learn how to make slides readable in the room, arrange windows on a classroom computer, and help students follow along. The session also includes a tour of the podium controls.",
     "categories": [
       "Classroom Technology",
       "Media & Slides"
@@ -1663,7 +1773,7 @@
     "id": "workshop-26",
     "title": "Back to Brightspace",
     "term": "Summer 2023",
-    "description": "Start the semester with a Brightspace site that is ready for students. This 15-minute boot camp covers course-site activation, content reuse, and welcome announcements so your setup is faster and more consistent.",
+    "description": "If you already know your way around Brightspace, this 15-minute refresher covers the jobs that come up at the start of a term: requesting a course site, bringing over material from an earlier course, and posting a welcome announcement. It helps you get the essentials done without starting from scratch.",
     "categories": [
       "Brightspace & LMS"
     ],
@@ -1772,7 +1882,7 @@
     "id": "workshop-35",
     "title": "Learn to grade in Brightspace",
     "term": "Spring 2023",
-    "description": "Make Brightspace grading more organized from the start. This workshop covers gradebook setup, grade items, Assignments, Quizzes, and submission grading so the system supports your workflow instead of slowing it down.",
+    "description": "If you will collect and grade work in Brightspace, this session goes through the gradebook and the links between grade items, Assignments, and Quizzes. You will also see how to review submissions and enter grades, so the routine tasks feel familiar when student work starts coming in.",
     "categories": [
       "Brightspace & LMS",
       "Assessment & Feedback"
@@ -1797,7 +1907,7 @@
     "id": "workshop-37",
     "title": "Launch your course site",
     "term": "Spring 2023",
-    "description": "Launch a Brightspace course site that gives students a clear path into the semester. This workshop shows how to create and activate the site, copy useful prior content, and reduce setup friction before classes begin.",
+    "description": "For a more detailed look at course setup, follow along as the presenter creates a Brightspace site, copies material from another course, and activates the new site for students. You can pause the recording at each step and work on your own course as you go.",
     "categories": [
       "Brightspace & LMS"
     ],
@@ -1870,7 +1980,7 @@
     "id": "workshop-43",
     "title": "Brightspace Getting Ready to Teach",
     "term": "Summer 2022",
-    "description": "Build a simple Brightspace course structure that students can navigate from day one. This workshop walks through gradebook setup, Assignments, Quizzes, and Content so the major pieces work together.",
+    "description": "Get oriented in Brightspace before classes begin. The session covers finding or creating your course site, adding a syllabus and other content, and setting up activities such as Assignments and Quizzes, along with the gradebook. It is a broader tour of the tools you will use once the site is live.",
     "categories": [
       "Brightspace & LMS"
     ],
@@ -1882,7 +1992,7 @@
     "id": "workshop-44",
     "title": "Refreshing your Brightspace course site",
     "term": "Summer 2022",
-    "description": "Improve the way students encounter content in Brightspace. This workshop introduces layout strategies grounded in learning science and design principles, with examples you can adapt for a clearer course site.",
+    "description": "Once the main pieces of a course site are in place, take a closer look at what students see when they enter it. This session uses learning science and design principles to suggest ways to organize content and make the site easier to navigate.",
     "categories": [
       "Brightspace & LMS"
     ],
@@ -1934,6 +2044,7 @@
       'workshop-8',
       'workshop-9',
       'workshop-11',
+      'workshop-12',
       'workshop-16',
       'workshop-17',
       'workshop-22',
@@ -2252,118 +2363,51 @@
 
     const learningTracks = [
       {
-        id: 'setup',
-        name: 'Start of Semester Setup',
-        blurb: 'Get a course ready before day one: a working site, a clear syllabus, and a first week students can follow.',
-        steps: [
-          { id: 'workshop-27', level: 'Foundation', note: 'Start with the document students read first.' },
-          { id: 'workshop-47', level: 'Core', note: 'With the syllabus settled, build the week-one plan around it.' },
-          { id: 'workshop-36', level: 'Core', note: 'Set up the channel you will use for the rest of the term.' },
-          { id: 'workshop-39', level: 'Advanced', note: 'Turn one-off announcements into expectations students can rely on.' }
-        ]
-      },
-      {
         id: 'brightspace',
         name: 'Brightspace Essentials',
-        blurb: 'Build a course site from activation through grading, in the order the work actually happens.',
+        blurb: 'Choose a quick refresher or a fuller setup walk-through, then move on to teaching tools, grading, and course layout.',
         steps: [
-          { id: 'workshop-26', level: 'Foundation', note: 'The fastest path to a live site, if the semester starts Monday.' },
-          { id: 'workshop-37', level: 'Foundation', note: 'The unhurried version: build the site deliberately instead of reusing one.' },
-          { id: 'workshop-43', level: 'Core', note: 'Wire the pieces together so Content, Assignments, and the gradebook agree.' },
-          { id: 'workshop-35', level: 'Core', note: 'Once that structure exists, make grading run through it.' },
-          { id: 'workshop-44', level: 'Advanced', note: 'Last, revisit layout with learning science in mind.' }
+          { id: 'workshop-26', level: 'Foundation', note: 'The first two sessions cover setup at different speeds; choose the one that fits your experience.' },
+          { id: 'workshop-37', level: 'Foundation', note: 'Use this longer walk-through if you need more help with the setup covered above.' },
+          { id: 'workshop-43', level: 'Core', note: 'After choosing a setup route, take a broader tour before focusing on grades.' },
+          { id: 'workshop-35', level: 'Core', note: 'Once teaching activities are in place, work through the grading routine.' },
+          { id: 'workshop-44', level: 'Advanced', note: 'Leave this until the basic workflow is set, then review the site from the student side.' }
         ]
       },
       {
         id: 'ai',
         name: 'Teaching with AI',
-        blurb: 'Start with what the tools can already do, then work toward course-specific assistants of your own.',
+        blurb: 'Explore practical uses of AI in teaching, from course materials and student support to small interactive tools.',
         steps: [
-          { id: 'workshop-13', level: 'Foundation', note: 'Get your bearings before committing to any one tool.' },
-          { id: 'workshop-8', level: 'Foundation', note: 'A first student-facing use, with the guardrails built in.' },
-          { id: 'workshop-9', level: 'Core', note: 'Move from using someone else’s assistant to shaping your own.' },
-          { id: 'workshop-2', level: 'Core', note: 'Apply the same skills to material you produce every week.' },
-          { id: 'workshop-1', level: 'Advanced', note: 'The end of the path: build something that did not exist before.' }
-        ]
-      },
-      {
-        id: 'assessment',
-        name: 'Assessment & Academic Integrity',
-        blurb: 'Decide what AI is allowed to do in your course, then redesign exams and rubrics around that decision.',
-        steps: [
-          { id: 'workshop-49', level: 'Foundation', note: 'Settle the policy question first — everything downstream depends on it.' },
-          { id: 'workshop-24', level: 'Core', note: 'Redesign the assessments that policy just exposed.' },
-          { id: 'workshop-19', level: 'Core', note: 'Make the new expectations legible to students.' },
-          { id: 'workshop-29', level: 'Core', note: 'The delivery mechanics, once the design is settled.' },
-          { id: 'workshop-38', level: 'Advanced', note: 'Add practice so the graded exam is not the first real check.' }
-        ]
-      },
-      {
-        id: 'feedback',
-        name: 'Feedback That Works',
-        blurb: 'Collect feedback you can act on, and build students’ ability to give it to each other.',
-        steps: [
-          { id: 'workshop-11', level: 'Foundation', note: 'Begin with feedback flowing toward you.' },
-          { id: 'workshop-5', level: 'Foundation', note: 'Add checks that tell you the same thing, continuously.' },
-          { id: 'workshop-30', level: 'Core', note: 'Change direction: teach students the skill before you assign it.' },
-          { id: 'workshop-14', level: 'Advanced', note: 'Only then run peer review at full scale.' }
-        ]
-      },
-      {
-        id: 'design',
-        name: 'Visual Design & Presentations',
-        blurb: 'Make what students look at easier to follow — on slides, at the podium, and on video.',
-        steps: [
-          { id: 'workshop-15', level: 'Foundation', note: 'Start with principles you can apply to decks you already have.' },
-          { id: 'workshop-12', level: 'Core', note: 'Then the software skills to execute them.' },
-          { id: 'workshop-2', level: 'Core', note: 'A faster route to the same quality bar.' },
-          { id: 'workshop-25', level: 'Core', note: 'Design is half of it — now deliver the thing in a real room.' },
-          { id: 'workshop-10', level: 'Advanced', note: 'The most production-heavy format, saved for last.' }
+          { id: 'workshop-13', level: 'Foundation', note: 'Start broadly; the later sessions focus on particular tools and teaching tasks.' },
+          { id: 'workshop-8', level: 'Foundation', note: 'First move from faculty preparation to a tool students can use.' },
+          { id: 'workshop-9', level: 'Core', note: 'Next, look at a more tailored assistant after seeing one bound to course sources.' },
+          { id: 'workshop-2', level: 'Core', note: 'Move from assistant design to making materials you teach with.' },
+          { id: 'workshop-1', level: 'Advanced', note: 'End by making a small tool that responds to a particular course need.' }
         ]
       },
       {
         id: 'participation',
         name: 'Participation & Motivation',
-        blurb: 'Work on why students engage before working on how you call on them.',
+        blurb: 'Look at what gets students ready to contribute, then try structures and tools that bring more of them into class discussion.',
         steps: [
-          { id: 'workshop-22', level: 'Foundation', note: 'Diagnose why engagement is low before changing tactics.' },
-          { id: 'workshop-7', level: 'Foundation', note: 'The highest-leverage single fix: preparation before class.' },
-          { id: 'workshop-6', level: 'Core', note: 'Structures that give prepared students something worth doing.' },
-          { id: 'workshop-48', level: 'Core', note: 'Address what still gets in the way once the structures are in place.' },
-          { id: 'workshop-16', level: 'Advanced', note: 'A tool for the students the earlier moves did not reach.' }
+          { id: 'workshop-22', level: 'Foundation', note: 'Start with motivation before choosing activities or software.' },
+          { id: 'workshop-7', level: 'Foundation', note: 'Preparation comes next because it shapes what students can do in class.' },
+          { id: 'workshop-6', level: 'Core', note: 'With students prepared, try structures for active work during class.' },
+          { id: 'workshop-48', level: 'Core', note: 'Use this to troubleshoot what still limits participation after trying those structures.' },
+          { id: 'workshop-16', level: 'Advanced', note: 'Polling is one option when you want an answer from everyone at once.' }
         ]
       },
       {
-        id: 'groupwork',
-        name: 'Group Work & Discussion',
-        blurb: 'Give students a reason to talk to each other, then structure the work so it pays off.',
+        id: 'design',
+        name: 'Visual Design & Presentations',
+        blurb: 'Start with PowerPoint basics, improve how your slides communicate, then practice presenting them in the room and on video.',
         steps: [
-          { id: 'workshop-33', level: 'Foundation', note: 'The lowest-stakes place to practice structured student talk.' },
-          { id: 'workshop-20', level: 'Core', note: 'Move that structure into live class time.' },
-          { id: 'workshop-14', level: 'Core', note: 'Give the groups a task with real stakes attached.' },
-          { id: 'workshop-3', level: 'Advanced', note: 'Hardest to get right: collaboration with an outside voice in the room.' }
-        ]
-      },
-      {
-        id: 'tech',
-        name: 'Classroom Technology Toolkit',
-        blurb: 'The tools that carry a live session — polling, Zoom, demos, and what is coming next.',
-        steps: [
-          { id: 'workshop-41', level: 'Foundation', note: 'One tool, immediately useful in any live session.' },
-          { id: 'workshop-17', level: 'Foundation', note: 'Then the platform already in your week, used better.' },
-          { id: 'workshop-42', level: 'Core', note: 'Catch up on what changed while you were busy teaching.' },
-          { id: 'workshop-32', level: 'Core', note: 'Harder: technology you run live, in front of students.' },
-          { id: 'workshop-18', level: 'Advanced', note: 'Finally, decide what is worth adopting next.' }
-        ]
-      },
-      {
-        id: 'google',
-        name: 'Google Workspace for Teaching',
-        blurb: 'A short path through the Google tools most often used for course files and quick assessment.',
-        steps: [
-          { id: 'workshop-28', level: 'Foundation', note: 'Get the files in order first.' },
-          { id: 'workshop-31', level: 'Foundation', note: 'Then the format students will actually work in.' },
-          { id: 'workshop-23', level: 'Core', note: 'Last, use the same suite for quick assessment.' }
+          { id: 'workshop-12', level: 'Foundation', note: 'Start here for a reliable PowerPoint setup before working on the design itself.' },
+          { id: 'workshop-15', level: 'Core', note: 'With the PowerPoint workflow in place, turn to how students follow what you show and say.' },
+          { id: 'workshop-2', level: 'Core', note: 'AI enters as another way to make materials, judged by the same principles.' },
+          { id: 'workshop-25', level: 'Core', note: 'Move from designing the deck to using it in a classroom.' },
+          { id: 'workshop-10', level: 'Advanced', note: 'Finish by adapting your presentation approach for a recorded lesson.' }
         ]
       }
     ];
@@ -2401,19 +2445,27 @@
       const preview = track.steps.map((step, index) => {
         const workshop = workshopById.get(step.id);
         if (!workshop) return '';
-        return `<li><span>${index + 1}</span><span>${escapeHTML(workshop.title)} <span class="preview-term">${escapeHTML(workshop.term)}</span></span></li>`;
+        return `<li>
+          <span class="preview-node" aria-hidden="true">${index + 1}</span>
+          <span class="preview-level" data-level="${escapeHTML(step.level)}">${escapeHTML(step.level)}</span>
+          <span class="preview-title">${escapeHTML(workshop.title)}</span>
+          <span class="preview-term">${escapeHTML(workshop.term)}</span>
+        </li>`;
       }).join('');
       return `
-        <button class="track-card" type="button" data-track="${escapeHTML(track.id)}">
-          <span class="track-kicker">Learning Track</span>
-          <h2>${escapeHTML(track.name)}</h2>
-          <p class="track-blurb">${escapeHTML(track.blurb)}</p>
-          <ol class="track-preview">${preview}</ol>
-          <span class="track-card-foot">
-            <span>View track</span>
-            <span class="track-count">${track.steps.length} workshops</span>
-          </span>
-        </button>
+        <article class="track-card">
+          <div class="track-card-head">
+            <div>
+              <h2>${escapeHTML(track.name)}</h2>
+              <p class="track-blurb">${escapeHTML(track.blurb)}</p>
+            </div>
+            <div class="track-card-action">
+              <span class="track-count">${track.steps.length} workshops</span>
+              <button class="track-open" type="button" data-track="${escapeHTML(track.id)}" aria-label="View ${escapeHTML(track.name)} track">View track →</button>
+            </div>
+          </div>
+          <ol class="track-preview" aria-label="Workshops in recommended order">${preview}</ol>
+        </article>
       `;
     }
 
@@ -2488,14 +2540,14 @@
     }
 
     trackGrid.addEventListener('click', event => {
-      const card = event.target.closest('.track-card');
+      const card = event.target.closest('.track-open');
       if (card) setTrack(card.dataset.track, { focus: true });
     });
 
     trackBack.addEventListener('click', () => {
       const previousTrackId = currentTrackId;
       setTrack('');
-      const card = trackGrid.querySelector(`[data-track="${previousTrackId}"]`);
+      const card = trackGrid.querySelector(`.track-open[data-track="${previousTrackId}"]`);
       if (card) card.focus();
     });
 

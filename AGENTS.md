@@ -95,8 +95,9 @@ the controls band and switches between two panels:
 - **Search the Archive** (`#panelIndex`) — the original index, unchanged.
 - **Learning Tracks** (`#panelTracks`) — carries a "New" badge so it is not missed.
 
-The tracks panel has two states: an overview grid of track cards (`#trackGrid`),
-and a detail view (`#trackDetail`) showing one track's ordered steps.
+The tracks panel has two states: an overview of four full-width track cards
+(`#trackGrid`) with left-to-right workshop timelines (vertical on narrow
+screens), and a detail view (`#trackDetail`) showing one track's ordered steps.
 
 ### Track data
 
@@ -125,19 +126,24 @@ content — only the ordering, the level, and the sequencing note.
 
 - Tracks run foundation to advanced. A step's `note` explains *why it comes at
   that point*, and must not restate the workshop description shown beneath it.
-- No track exceeds five workshops. Tracks may have different lengths (currently
-  three to five).
+- No track exceeds five workshops. The four current tracks each have five.
 - Older near-duplicate sessions are deliberately excluded from tracks so two
-  steps never show the same title. Six workshops are currently uncovered for this
-  reason; all remain visible in the archive view.
+  steps never show the same title. Workshops outside these four tracks remain
+  visible in the archive view.
 - A workshop may appear in two tracks when it genuinely serves both.
 
 ### Current tracks
 
-Start of Semester Setup (4), Brightspace Essentials (5), Teaching with AI (5),
-Assessment & Academic Integrity (5), Feedback That Works (4), Visual Design &
-Presentations (5), Participation & Motivation (5), Group Work & Discussion (4),
-Classroom Technology Toolkit (5), Google Workspace for Teaching (3).
+Brightspace Essentials (5), Teaching with AI (5), Participation & Motivation (5),
+Visual Design & Presentations (5).
+
+The overview design and track selection were revised, followed by an editorial
+pass on the 20 track steps. Nineteen distinct workshop descriptions were updated
+in both HTML files, and all track-specific step notes were revised. The workshop
+order remains provisional. The two Brightspace setup sessions cover much of the
+same ground at different speeds; their notes tell readers to choose one.
+Visual Design & Presentations begins with the 15-minute PowerPoint boot camp
+as its Foundation step, before the slide-design workshop.
 
 ### URL state
 
@@ -173,15 +179,17 @@ be seeded before `update()` runs.
 - Reset works
 - Desktop and mobile layouts render cleanly
 
-`index.tracks.html` was checked in a browser at 1340px, 980px, and 375px:
-- All 10 tracks render with their expected step counts
-- Every `steps[].id` resolves against the workshop dataset
-- Recording and slide links render for every step
-- Tab switching, track detail, and back navigation work with no console errors
-- Deep links restore the right view: `?view=tracks`, `?view=tracks&track=<id>`,
-  a bare `?track=<id>`, an unrecognized slug, and archive-only params were each
-  checked against a fresh page load
-- The archive view's search, sort, and reset are unaffected
+The four-track `index.tracks.html` revision was statically checked:
+- Both scripts parse, and all 20 `steps[].id` values resolve against the dataset
+- The workshop dataset still matches `index.html` exactly (49 records)
+- The HTML has no nested buttons, and `git diff --check` passes
+
+Selected workshop slide decks were consulted while revising descriptions,
+including Brightspace setup, participation, AI, and presentation sessions. The
+remaining descriptions were revised from the archive's existing summaries.
+
+The prior ten-track version was checked in a browser at 1340px, 980px, and
+375px. The new timeline layout has not yet received browser visual QA.
 
 ## Known External Dependencies
 
